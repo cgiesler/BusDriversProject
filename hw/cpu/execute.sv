@@ -3,7 +3,7 @@ module execute(
   input[4:0] opcode,
   input MemInSel,
   input [1:0] ALU_A_SEL, ALU_B_SEL,
-  output [31:0] exeOut, RegData1_o
+  output [31:0] exeOut, RegData1_o, addrOut
 );
 
 //Instantiate modules//
@@ -18,7 +18,8 @@ assign ALU_B_in = (ALU_B_SEL == 2'b10) ? 32'h00000004 :
 alu ALU(.*);
 
 //Determine outputs
-assign exeOut = MemInSel ? SPout : ALUOut;
+assign exeOut = ALUOut;
+assign addrOut = MemInSel ? SPout : ALUOut;
 assign RegData1_o = RegData1;
 
 endmodule

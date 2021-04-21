@@ -40,7 +40,7 @@ assign ALU_B_SEL = B_SEL_TEMP;
 assign B = opcode == 5'b10001;
 assign BEQ = opcode == 5'b10010;
 assign JMP = (opcode == 5'b10011) | (opcode == 5'b10100); //JMP and FUN
-assign RET = (opcode == 5'b10100) | (opcode == 5'b10100); //RET and INTR
+assign RET = (opcode == 5'b10101) | (opcode == 5'b10110); //RET and INTR
 
 assign MemInSel = (opcode == 5'b01111); //Memory address select PUSH
 assign memrd = (opcode == 5'b10000) | (opcode == 5'b01101); //mem read enable
@@ -57,8 +57,8 @@ assign SPwe = (opcode == 5'b01111) | (opcode == 5'b10000); //PUSH and POP
 assign Reg0Sel = (opcode == 5'b10101) ? (2'b10) : //LR
 				(opcode == 5'b10110) ? (2'b11) : //ILR
 				(2'b01); //Ry
-assign imm_sel = (opcode == 5'b10011) | (opcode == 5'b10100) ? (2'b10) :
-					(opcode == 5'b01100) ? (2'b01) : (2'b00);
+assign imm_sel = (opcode == 5'b10011) ? (2'b10) :
+					(opcode == 5'b01100) | (opcode == 5'b10100) ? (2'b01) : (2'b00);
 
 endmodule
 

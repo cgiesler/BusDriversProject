@@ -37,7 +37,6 @@ always_comb begin
 end
 
 assign Reg1In = Reg1Sel ? (inst[26:22]) : (inst[16:12]); //Rx : Rz
-
 Register_File regFile(.clk(clk), .rst_n(rst_n), .wEn(wEn), .Reg0(Reg0In),
 			.Reg1(Reg1In), .Reg0Out(Reg0Out), .Reg1Out(Reg1Out), .wReg(wReg), .wData(wData));
 
