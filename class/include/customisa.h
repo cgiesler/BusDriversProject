@@ -18,8 +18,8 @@
 //    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 //////////////////////////////////////////////////////////////////////////////
-#ifndef __MIPS_H__
-#define __MIPS_H__
+#ifndef __CUSTOMISA_H__
+#define __CUSTOMISA_H__
 
 
 /* A header for mips specifc details
@@ -117,6 +117,7 @@ namespace priscas
         FUN = 20,
         RET = 21,
         INTR = 22,
+        NOP = 25,
         HALT = 31,
 		// LB = 32,
 		// LH = 33,
@@ -150,7 +151,7 @@ namespace priscas
 	// 	NONE = -1	// default, if not R format
 	// };
 
-	int friendly_to_numerical(const char *);
+	int regname_to_numerical(const char *);
 
 	// From a register specifier, i.e. %so get an integer representation
 	int get_reg_num(const char *);
@@ -227,13 +228,13 @@ namespace priscas
 	/* MIPS_32 ISA
 	 *
 	 */
-	class MIPS_32 : public ISA
+	class customisa : public ISA
 	{
 		
 		public:
 			virtual std::string get_reg_name(int id);
-			virtual int get_reg_id(std::string& fr) { return friendly_to_numerical(fr.c_str()); }
-			virtual ISA_Attrib::endian get_endian() { return ISA_Attrib::CPU_BIG_ENDIAN; }
+			virtual int get_reg_id(std::string& fr) { return regname_to_numerical(fr.c_str()); }
+			virtual ISA_Attrib::endian get_endian() { return ISA_Attrib::CPU_LITTLE_ENDIAN; }
 			virtual mBW assemble(const Arg_Vec& args, const BW& baseAddress, syms_table& jump_syms) const;
 		private:
 			static const unsigned REG_COUNT = 32;

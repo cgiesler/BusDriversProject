@@ -29,7 +29,7 @@
 #include "branding.h"
 #include "env.h"
 #include "ISA.h"
-#include "mips.h"
+// #include "mips.h"
 #include "mtsstream.h"
 #include "primitives.h"
 #include "priscas_global.h"
@@ -37,6 +37,7 @@
 #include "program.h"
 #include "syms_table.h"
 #include "streams.h"
+#include "customisa.h"
 
 namespace priscas
 {

@@ -192,7 +192,7 @@ namespace priscas
 			for(size_t itr = 0; itr < lines.size(); itr++)
 			{
 				// Specify the ISA to use
-				MIPS_32 theISA;
+				customisa theISA;
 				uint64_t bytecount;
 
 				if(!this->AsmFlash(lines[itr], asm_pc, theISA, bytecount))

@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////
 #include "customisa.h"
-#include <string>
+// #include <string>
 
 namespace priscas
 {
@@ -27,7 +27,7 @@ namespace priscas
 	{
 		int len = strlen(fr_name);
 		if(len < 2) return INVALID;
-        const char * temp = &fr_name[1];
+        const char * temp = &fr_name[2];
 
 		int reg_val = 
             !strcmp("$lr", fr_name) ? $lr :
@@ -36,7 +36,7 @@ namespace priscas
 		return reg_val;
 	}
 
-	std::string MIPS_32::get_reg_name(int id)
+	std::string customisa::get_reg_name(int id)
 	{
 		std::string name =
 			id == 0 ? "$r0" :
@@ -85,7 +85,6 @@ namespace priscas
         return 
             operation == NOT ? true :
             operation == MOV ? true :
-            operation == FUN ? true :
             false;
     }
 
@@ -95,6 +94,7 @@ namespace priscas
             operation == JMP ? true :
             operation == PUSH ? true :
             operation == POP ? true :
+            operation == FUN ? true :
             false;
     }
 
@@ -130,10 +130,12 @@ namespace priscas
 	}
 
 	// Main interpretation routine
-	mBW MIPS_32::assemble(const Arg_Vec& args, const BW& baseAddress, syms_table& jump_syms) const
+	mBW customisa::assemble(const Arg_Vec& args, const BW& baseAddress, syms_table& jump_syms) const
 	{
 		if(args.size() < 1)
 			return std::shared_ptr<BW>(new BW_32());
+        
+        // printf("starting");
 
 		priscas::opcode current_op = priscas::SYS_RES;
 		// priscas::funct f_code = priscas::NONE;
@@ -165,7 +167,8 @@ namespace priscas
 		else if("jmp" == args[0]) { current_op = priscas::JMP; }
 		else if("fun" == args[0]) { current_op = priscas::FUN;}
 		else if("ret" == args[0]) { current_op = priscas::RET;}
-		else if("intr" == args[0]) { current_op = priscas::INTR;}	
+		else if("intr" == args[0]) { current_op = priscas::INTR;}
+        else if("nop" == args[0]) { current_op = priscas::NOP;}		
 		else if("halt" == args[0]) { current_op = priscas::HALT;}
 		else
 		{
@@ -173,7 +176,7 @@ namespace priscas
 		}
 
 		// Check for insufficient arguments
-		if(args.size() >= 1)
+		if(args.size() > 1)
 		{
 			if	(
 					(inst_1operands(current_op) && args.size() != 1) ||
@@ -181,12 +184,14 @@ namespace priscas
 					(inst_3operands(current_op) && args.size() != 3)	
 				)
 			{
+                // printf("%s | %s", current_op, args.size());
 				throw priscas::mt_asm_bad_arg_count();
 			}
-            else if (args.size() != 4) throw priscas::mt_asm_bad_arg_count();
-
+            else if (args.size() != 4 && !inst_1operands(current_op) && !inst_2operands(current_op) && !inst_3operands(current_op)) {
+                throw priscas::mt_asm_bad_arg_count();
+            }
 			// Now first argument parsing
-            if (current_op == JMP) {
+            if (current_op == JMP || current_op == FUN) {
                 if(jump_syms.has(args[1]))
 				{
                     priscas::BW_32 addr = baseAddress.AsUInt32();
@@ -204,7 +209,7 @@ namespace priscas
 				priscas::mt_bad_mnemonic();
 			} 
 		}
-
+        // printf("%s", "first done");
 		// Second Argument Parsing
 		
 		if(args.size() > 2)
@@ -219,9 +224,11 @@ namespace priscas
 				{
 					imm = priscas::get_imm(args[2].c_str());
 				}
+                if (current_op == FUN) rx = priscas::$lr;
             }
             else ry = priscas::get_reg_num(args[2].c_str());
 		}
+        // printf("%s", "second done");
 
 		if(args.size() > 3)
 		{
@@ -239,6 +246,7 @@ namespace priscas
                 imm = priscas::get_imm(args[3].c_str());
             }
 		}
+        // printf("%s", "third done");
 
 		// Pass the values of rs, rt, rd to the processor's encoding function
 		BW_32 inst = generic_customisa_encode(rx, ry, rz, imm, current_op);
@@ -250,38 +258,15 @@ namespace priscas
 	// Returns -1 if invalid or out of range
 	int get_reg_num(const char * reg_str)
 	{
-		std::vector<char> numbers;
-		int len = strlen(reg_str);
-		if(len <= 1) throw priscas::mt_bad_imm();
-		if(reg_str[0] != '$') throw priscas::mt_parse_unexpected("$", reg_str);
-		for(int i = 1; i < len; i++)
-		{
-			if(reg_str[i] >= '0' && reg_str[i] <= '9')
-			{
-				numbers.push_back(reg_str[i]);
-			}
+        int len = strlen(reg_str);
+		if(len < 2) return INVALID;
+        const char * temp = &reg_str[2];
 
-			else throw priscas::mt_bad_reg_format();
-		}
-
-		int num = -1;
-
-		if(numbers.empty()) throw priscas::mt_bad_reg_format();
-		else
-		{
-			char * num_str = new char[numbers.size()];
-
-			int k = 0;
-			for(std::vector<char>::iterator itr = numbers.begin(); itr < numbers.end(); itr++)
-			{
-				num_str[k] = *itr;
-				k++;
-			}
-			num = atoi(num_str);
-			delete[] num_str;
-		}
-
-		return num;
+		int reg_val = 
+            !strcmp("$lr", reg_str) ? $lr :
+            !strcmp("$ilr", reg_str) ? $ilr :
+            std::stoi(temp);
+		return reg_val;
 	}
 
 	// Returns immediate value if valid
