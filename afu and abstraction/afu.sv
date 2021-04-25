@@ -56,16 +56,15 @@ module afu (
   mem(.clk(clk),.rst_n(!rst),.CPUEn(0),.AclEn(0),.DMAEn(DMAEn),.DMAWrEn(DMAWrEn),
       .DMAAddr(DMAAddr),.DMAData(DMAData),.DMAOut(DMAOut),.DMAValid(DMAValid));
 
-  dma_fsm #(.CL_SIZE_WIDTH = 512, .WORD_SIZE = 32)
+  dma_fsm #(.CL_SIZE_WIDTH(512), .WORD_SIZE(32))
   dma_fsm(
     .clk(clk), 
     .rst_n(!rst),
     .empty(dma.empty), //dma.empty
     .full(dma.full),  //dma.full
     .dma_rd_data(dma.rd_data), //dma.rd_data
-    .cpu_init(cpu_init),
+    .cpu_init(1),
 
-    .valid(DMAValid);
     .data_to_host(DMAOut), // input from mem
     .wr_ready(0), // from cpu
     .data_to_mem(DMAData),
@@ -73,7 +72,9 @@ module afu (
     .DMAEn(DMAEn),
     .DMAWrEn(DMAWrEn),
     .host_rd_ready(dma.rd_en), //dma.rd_en
-    .host_wr_ready(dma.wr_en)  //dma.wr_en
+    .host_wr_ready(dma.wr_en),  //dma.wr_en
+    .DMAAddr(DMAAddr),
+    .DMAValid(DMAValid)
   );
 
 
