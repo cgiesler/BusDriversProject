@@ -20,8 +20,9 @@ module dma_fsm_tb (
     logic [CL_SIZE_WIDTH-1:0] lines;
     logic [31:0] DMAAddr;
     logic [31:0] DMAData;
-    logic [31:0] DMAOut;
+    //logic [31:0] DMAOut;
     logic cpu_init;
+    logic DMAValid;
 
     always #5 begin 
         clk = ~clk;
@@ -33,7 +34,7 @@ module dma_fsm_tb (
 
     memory_controller #(.DATA_WIDTH(32),.ADDR_WIDTH(28))
     mem(.clk(clk),.rst_n(rst_n),.CPUEn(0),.CPUWrEn(0),.AclWrEn(0),.AclEn(0),.DMAEn(DMAEn),.DMAWrEn(DMAWrEn),
-      .DMAAddr(DMAAddr),.DMAData(data_to_mem),.DMAOut(DMAOut),.DMAValid(valid));
+      .DMAAddr(DMAAddr),.DMAData(data_to_mem),.DMAOut(data_to_host),.DMAValid(DMAValid));
 
     initial begin
         clk = 0;
@@ -66,10 +67,11 @@ module dma_fsm_tb (
         wr_ready = 1;
         @(posedge clk);
         for( i = 15; i>=0; i--) begin
-            data_to_host = i;
+            //data_to_host = i;
             lines[32*i+31-:32] = i;
             @(posedge clk);
         end
+        wr_ready = 0;
         $display("expected:%d, got:%d.",dma_rd_data,line_buffer);
         @(posedge clk);
         full = 1;

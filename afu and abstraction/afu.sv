@@ -29,7 +29,7 @@ module afu (
 
   //
 
-  wire valid;
+  wire DMAValid;
   wire [31:0] DMAOut;
   wire cpu_init;
   wire [31:0] DMAData;
@@ -54,7 +54,7 @@ module afu (
   //memory_controller (.*);
   memory_controller #(.DATA_WIDTH(32),.ADDR_WIDTH(28))
   mem(.clk(clk),.rst_n(!rst),.CPUEn(0),.AclEn(0),.DMAEn(DMAEn),.DMAWrEn(DMAWrEn),
-      .DMAAddr(DMAAddr),.DMAData(DMAData),.DMAOut(DMAOut),.DMAValid(valid));
+      .DMAAddr(DMAAddr),.DMAData(DMAData),.DMAOut(DMAOut),.DMAValid(DMAValid));
 
   dma_fsm #(.CL_SIZE_WIDTH = 512, .WORD_SIZE = 32)
   dma_fsm(
@@ -65,6 +65,7 @@ module afu (
     .dma_rd_data(dma.rd_data), //dma.rd_data
     .cpu_init(cpu_init),
 
+    .valid(DMAValid);
     .data_to_host(DMAOut), // input from mem
     .wr_ready(0), // from cpu
     .data_to_mem(DMAData),
