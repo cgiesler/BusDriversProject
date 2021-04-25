@@ -31,11 +31,16 @@ module afu (
 
   wire DMAValid;
   wire [31:0] DMAOut;
-  wire cpu_init;
   wire [31:0] DMAData;
   wire DMAEn;
   wire DMAWrEn;
   logic [31:0] DMAAddr;
+  logic local_rd_en;
+  logic local_wr_en;
+
+  //
+  wire wr_init;
+  assign wr_init = local_rd_en;
 
   // Instantiate the memory map, which provides the starting read/write
   // 64-bit virtual byte addresses, a transfer size (in cache lines), and a
@@ -63,16 +68,15 @@ module afu (
     .empty(dma.empty), //dma.empty
     .full(dma.full),  //dma.full
     .dma_rd_data(dma.rd_data), //dma.rd_data
-    .cpu_init(1),
 
     .data_to_host(DMAOut), // input from mem
-    .wr_ready(0), // from cpu
+    .wr_ready(wr_init), // from cpu
     .data_to_mem(DMAData),
     .line_buffer(dma.wr_data), //dma.wr_data
     .DMAEn(DMAEn),
     .DMAWrEn(DMAWrEn),
-    .host_rd_ready(dma.rd_en), //dma.rd_en
-    .host_wr_ready(dma.wr_en),  //dma.wr_en
+    .host_rd_ready(local_rd_en), //dma.rd_en
+    .host_wr_ready(local_wr_en),  //dma.wr_en
     .DMAAddr(DMAAddr),
     .DMAValid(DMAValid)
   );
@@ -94,14 +98,14 @@ module afu (
 
   // Read from the DMA when there is data available (!dma.empty) and when
   // it is safe to write data (!dma.full).
-  //assign dma.rd_en = !dma.empty && !dma.full;
+  assign dma.rd_en = local_rd_en;//!dma.empty && !dma.full;
 
   // Since this is a simple loopback, write to the DMA anytime we read.
   // For most applications, write enable would be asserted when there is an
   // output from a pipeline. In this case, the "pipeline" is a wire.
 
   // FIXME wr_en should come from cpu fsm
-  //assign dma.wr_en = valid; //& !bubble;
+  assign dma.wr_en = local_rd_en; //& !bubble;
 
   // Write the data that is read.
   

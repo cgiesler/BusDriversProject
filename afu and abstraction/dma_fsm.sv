@@ -8,7 +8,6 @@ module dma_fsm
     input logic empty, //dma.empty
     input logic full,  //dma.full
     input [CL_SIZE_WIDTH-1:0] dma_rd_data, //dma.rd_data
-    output wire cpu_init,
 
     input wire DMAValid,
     input reg [31:0] data_to_host, // input from mem
@@ -27,6 +26,7 @@ module dma_fsm
     logic [FILL_BITS-1:0] fill_count;
     logic [WORD_SIZE-1:0] line_out [FILL_COUNT-1:0];
     logic wr_delay;
+    //logic rd_ready;
 
     typedef enum reg [1:0]{
         IDLE = 2'b0,
@@ -36,7 +36,6 @@ module dma_fsm
 
     state_t state;
 
-    assign rd_ready = !empty;
 
 	genvar gv;
 	generate
@@ -54,6 +53,7 @@ module dma_fsm
             fill_count <= '0;
             DMAAddr <= 32'h 5000-4;
             wr_delay <= 1;
+            //rd_ready <= 0;
         end
         else begin
             case(state)
@@ -62,8 +62,10 @@ module dma_fsm
                     host_wr_ready <= 0;
                     DMAWrEn <= 1'b0;
                     line_buffer <= 0;
+                    //rd_ready <= 0;
 
-                    if (rd_ready) begin
+                    if (!empty) begin
+                        //rd_ready <= 1;
                         state <= READ; 
                         line_buffer <= dma_rd_data;
                     end
@@ -83,7 +85,7 @@ module dma_fsm
                 end
                 READ: begin
                     data_to_mem <= line_out[fill_count];
-                    if (& fill_count ==1'b1 && rd_ready) begin
+                    if (& fill_count ==1'b1 /*&& rd_ready*/) begin
                         // read buffer is filled
                         DMAEn <= 1'b1;
                         DMAWrEn <= 1'b1;
@@ -92,7 +94,7 @@ module dma_fsm
                         state <= IDLE; // this is the correct implementation
                         DMAAddr <= DMAAddr + 4;
                     end 
-                    else if (rd_ready) begin
+                    else /*if (rd_ready)*/ begin
                         // keep filling
                         DMAEn <= 1'b1;
                         DMAWrEn <= 1'b1;
