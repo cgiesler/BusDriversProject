@@ -72,7 +72,7 @@ module afu (
     .data_to_host(DMAOut), // input from mem
     .wr_ready(wr_init), // from cpu
     .data_to_mem(DMAData),
-    .line_buffer(dma.wr_data), //dma.wr_data
+    .out(dma.wr_data), //dma.wr_data
     .DMAEn(DMAEn),
     .DMAWrEn(DMAWrEn),
     .host_rd_ready(local_rd_en), //dma.rd_en
@@ -80,8 +80,6 @@ module afu (
     .DMAAddr(DMAAddr),
     .DMAValid(DMAValid)
   );
-
-
 
   // Assign the starting addresses from the memory map.
   assign dma.rd_addr = rd_addr;
@@ -105,7 +103,7 @@ module afu (
   // output from a pipeline. In this case, the "pipeline" is a wire.
 
   // FIXME wr_en should come from cpu fsm
-  assign dma.wr_en = local_rd_en; //& !bubble;
+  assign dma.wr_en = local_wr_en; //& !bubble;
 
   // Write the data that is read.
   

@@ -13,7 +13,7 @@ module dma_fsm
     input reg [31:0] data_to_host, // input from mem
     input wire wr_ready, // from cpu
     output reg [31:0] data_to_mem,
-    output reg [CL_SIZE_WIDTH-1:0] line_buffer, //dma.wr_data
+    output reg [CL_SIZE_WIDTH-1:0] out, //dma.wr_data
     output reg DMAEn,
     output reg DMAWrEn,
     output logic host_rd_ready, //dma.rd_en
@@ -24,14 +24,19 @@ module dma_fsm
     localparam FILL_COUNT = CL_SIZE_WIDTH / WORD_SIZE;
 	localparam FILL_BITS = $clog2(FILL_COUNT);
     logic [FILL_BITS-1:0] fill_count;
-    logic [WORD_SIZE-1:0] line_out [FILL_COUNT-1:0];
+    wire [WORD_SIZE-1:0] line_out [FILL_COUNT-1:0];
     logic wr_delay;
+    reg [CL_SIZE_WIDTH-1:0] line_buffer;
     //logic rd_ready;
+    logic [1:0] bubble;
+    logic rd_done;
 
-    typedef enum reg [1:0]{
-        IDLE = 2'b0,
-        READ = 2'b01,
-        WRITE = 2'b10
+    typedef enum reg [2:0]{
+        IDLE = 3'd0,
+        READ = 3'd1,
+        WRITE = 3'd2,
+	WRITE_WAIT = 3'd3,
+	READ_WAIT = 3'd4
     } state_t;
 
     state_t state;
@@ -53,7 +58,10 @@ module dma_fsm
             fill_count <= '0;
             DMAAddr <= 32'h 5000-4;
             wr_delay <= 1;
-            //rd_ready <= 0;
+	    bubble <= 0;
+	    host_rd_ready <= 0;
+	    host_wr_ready <= 0;
+	    rd_done <= 0;
         end
         else begin
             case(state)
@@ -61,38 +69,39 @@ module dma_fsm
                     host_rd_ready <= 0;
                     host_wr_ready <= 0;
                     DMAWrEn <= 1'b0;
-                    line_buffer <= 0;
-                    //rd_ready <= 0;
-
                     if (!empty) begin
                         //rd_ready <= 1;
-                        state <= READ; 
+                        state <= READ;
                         line_buffer <= dma_rd_data;
                     end
-                    else if (wr_ready&wr_delay) begin
-                        wr_delay <= !wr_delay;
-                        DMAAddr <= 32'h 5000;
+                    
+                    if( wr_ready/*wr_ready&&!wr_delay*/) begin
                         DMAEn<=1;
-                    end
-                    else if( wr_ready&!wr_delay) begin
-                        DMAEn<=1;
-                        state <= WRITE;
-                        DMAAddr <= DMAAddr+4;
+                        DMAWrEn <= 1'b0;
+                        state <= WRITE_WAIT;
+			DMAAddr <= 32'h 5000;
 
                         //line_buffer[32*fill_count+31-:32]<=data_to_host;
                         //fill_count++;
                     end
+                    
                 end
-                READ: begin
+		WRITE_WAIT: begin
+		       	state <= WRITE;
+			DMAAddr <= DMAAddr + 4;
+		end
+
+		READ: begin
                     data_to_mem <= line_out[fill_count];
                     if (& fill_count ==1'b1 /*&& rd_ready*/) begin
                         // read buffer is filled
                         DMAEn <= 1'b1;
                         DMAWrEn <= 1'b1;
-                        host_rd_ready <= 1'b1;
                         fill_count++;
                         state <= IDLE; // this is the correct implementation
-                        DMAAddr <= DMAAddr + 4;
+			DMAAddr <= DMAAddr + 4;
+			host_rd_ready <= 1'b1;
+			//rd_done <= 1;
                     end 
                     else /*if (rd_ready)*/ begin
                         // keep filling
@@ -104,11 +113,15 @@ module dma_fsm
                     end
                 end
 
-                WRITE: begin
+		READ_WAIT: begin
+			state <= IDLE;
+			DMAWrEn <= 1'b0;
+			host_rd_ready <= 1'b1;
+		end
+		WRITE: begin
                     DMAEn <= 1'b1;
                     DMAWrEn <= 1'b0;
-                    if(DMAValid)
-                        line_buffer[32*fill_count+31-:32]<=data_to_host;
+                    out[32*fill_count+31-:32] <= data_to_host;
                     if (& fill_count ==1'b1) begin
                         // read buffer is filled
                         if (!full) begin
@@ -116,7 +129,6 @@ module dma_fsm
                             state <= IDLE;
                             fill_count++;
                             DMAAddr <= DMAAddr + 4;
-                            
                         end
                     end 
                     else begin
