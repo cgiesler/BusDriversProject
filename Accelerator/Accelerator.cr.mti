@@ -1,0 +1,72 @@
+{D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/ds2by2unit.sv} {1 {vlog -work work -sv -stats=none {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/ds2by2unit.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module ds2by2unit
+
+Top level modules:
+	ds2by2unit
+
+} {} {}} {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/tpumac.sv} {1 {vlog -work work -sv -stats=none {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/tpumac.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module tpumac
+
+Top level modules:
+	tpumac
+
+} {} {}} {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/maxpool_32bit.sv} {1 {vlog -work work -sv -stats=none {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/maxpool_32bit.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module maxpool_32bit
+
+Top level modules:
+	maxpool_32bit
+
+} {} {}} {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/systolic_array.sv} {1 {vlog -work work -sv -stats=none {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/systolic_array.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module systolic_array
+
+Top level modules:
+	systolic_array
+
+} {} {}} {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/maxpool.sv} {1 {vlog -work work -sv -stats=none {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/maxpool.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module maxpool
+
+Top level modules:
+	maxpool
+
+} {} {}} {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/tpuv1.sv} {1 {vlog -work work -sv -stats=none {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/tpuv1.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module tpuv1
+
+Top level modules:
+	tpuv1
+
+} {} {}} {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/memA.sv} {1 {vlog -work work -sv -stats=none {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/memA.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module memA
+
+Top level modules:
+	memA
+
+} {} {}} {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/maxpool_tb.sv} {1 {vlog -work work -sv -stats=none {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/maxpool_tb.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module maxpool_tb
+
+Top level modules:
+	maxpool_tb
+
+} {} {}} {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/accelerator.sv} {0 {vlog -work work -sv -stats=none {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/accelerator.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module accelerator
+** Error: D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/accelerator.sv(43): (vlog-2730) Undefined variable: 'Mem'.
+
+** Error: (vlog-13069) D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/accelerator.sv(44): near "end": syntax error, unexpected end, expecting ';'.
+
+
+} {4.0 5.0 6.0 7.0} {}} {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/memB.sv} {1 {vlog -work work -sv -stats=none {D:/User/OneDrive/STUDY/SPRING 2021/ECE 554/Accelerator/memB.sv}
+Model Technology ModelSim PE Student Edition vlog 10.4a Compiler 2015.03 Apr  7 2015
+-- Compiling module memB
+
+Top level modules:
+	memB
+
+} {} {}}
