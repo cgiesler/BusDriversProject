@@ -13,5 +13,5 @@ afu.sv
 csr_mgr.sv
 hal.sv
 ccip_std_afu.sv
-
+dma_fsm.sv
 QI:afu.qsf

@@ -3,7 +3,7 @@
 // addr larger than and equal to 1000 = sram 
  
  module memory_map
- #(parameter DATA_WIDTH=32, parameter ADDR_WIDTH) 
+ #(parameter DATA_WIDTH, parameter ADDR_WIDTH) 
  (
     input clk, rst_n,
     input [(DATA_WIDTH-1):0] data_a, data_b,

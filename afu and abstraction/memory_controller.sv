@@ -1,7 +1,7 @@
 // Priority memory access: CPU > Acl > DMA
 
 module memory_controller
-#(parameter DATA_WIDTH=32, parameter ADDR_WIDTH=28) 
+#(parameter DATA_WIDTH, parameter ADDR_WIDTH) 
 (
     input clk, rst_n,
     

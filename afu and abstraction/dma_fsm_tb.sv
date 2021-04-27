@@ -21,7 +21,6 @@ module dma_fsm_tb (
     logic [31:0] DMAAddr;
     logic [31:0] DMAData;
     //logic [31:0] DMAOut;
-    logic cpu_init;
     logic DMAValid;
 
     always #5 begin 
@@ -72,10 +71,10 @@ module dma_fsm_tb (
             @(posedge clk);
         end
         wr_ready = 0;
+        while(host_wr_ready != 1)
+            @(posedge clk);
+        
         $display("expected:%d, got:%d.",dma_rd_data,line_buffer);
-        @(posedge clk);
-        full = 1;
-        @(posedge clk);
 
         $stop;
     end
