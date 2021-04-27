@@ -37,10 +37,11 @@ module afu (
   logic [31:0] DMAAddr;
   logic local_rd_en;
   logic local_wr_en;
+  logic rd_done;
 
   //
   wire wr_init;
-  assign wr_init = local_rd_en;
+  assign wr_init = rd_done;
 
   // Instantiate the memory map, which provides the starting read/write
   // 64-bit virtual byte addresses, a transfer size (in cache lines), and a
@@ -61,14 +62,14 @@ module afu (
   mem(.clk(clk),.rst_n(!rst),.CPUEn(0),.AclEn(0),.DMAEn(DMAEn),.DMAWrEn(DMAWrEn),
       .DMAAddr(DMAAddr),.DMAData(DMAData),.DMAOut(DMAOut),.DMAValid(DMAValid));
 
-  dma_fsm #(.CL_SIZE_WIDTH(512), .WORD_SIZE(32))
+  dma_fsm #(.CL_ADDR_WIDTH(CL_ADDR_WIDTH),.CL_SIZE_WIDTH(512), .WORD_SIZE(32))
   dma_fsm(
     .clk(clk), 
     .rst_n(!rst),
     .empty(dma.empty), //dma.empty
     .full(dma.full),  //dma.full
     .dma_rd_data(dma.rd_data), //dma.rd_data
-
+    .rd_size(size),
     .data_to_host(DMAOut), // input from mem
     .wr_ready(wr_init), // from cpu
     .data_to_mem(DMAData),
@@ -78,8 +79,11 @@ module afu (
     .host_rd_ready(local_rd_en), //dma.rd_en
     .host_wr_ready(local_wr_en),  //dma.wr_en
     .DMAAddr(DMAAddr),
-    .DMAValid(DMAValid)
+    .DMAValid(DMAValid),
+    .rd_done(rd_done)
   );
+
+  //assign dma.wr_data = dma.rd_size;
 
   // Assign the starting addresses from the memory map.
   assign dma.rd_addr = rd_addr;
@@ -96,14 +100,14 @@ module afu (
 
   // Read from the DMA when there is data available (!dma.empty) and when
   // it is safe to write data (!dma.full).
-  assign dma.rd_en = local_rd_en;//!dma.empty && !dma.full;
+  assign dma.rd_en = local_rd_en;
 
   // Since this is a simple loopback, write to the DMA anytime we read.
   // For most applications, write enable would be asserted when there is an
   // output from a pipeline. In this case, the "pipeline" is a wire.
 
   // FIXME wr_en should come from cpu fsm
-  assign dma.wr_en = local_wr_en; //& !bubble;
+  assign dma.wr_en = !dma.full&&local_wr_en;
 
   // Write the data that is read.
   
@@ -112,10 +116,5 @@ module afu (
 
   // The AFU is done when the DMA is done writing size cache lines.
   assign done = dma.wr_done;
-/*
-  always@(posedge clk, negedge !rst)begin
-    if (rst) bubble <= 1'b0;
-    if (valid & !dma.full) bubble <= bubble+1;
-  end
-*/
+
 endmodule
