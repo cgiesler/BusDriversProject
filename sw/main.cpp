@@ -29,6 +29,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <cmath>
+// the 2 below were added by Eddie 
+#include <string>
+#include <fstream>
 
 #include <opae/utils.h>
 
@@ -43,6 +46,37 @@ using namespace std;
 
 void printUsage(char *name);
 bool checkUsage(int argc, char *argv[], unsigned long &size, unsigned long &num_tests);
+
+// with the given fileName, returns the number of ints there in the file, not the byte size 
+int findSize(string fileName) {
+  fstream fileStream;
+  uint tempInt;
+
+  fileStream.open(fileName);
+  int size = 0;
+
+  while (true) {
+      if( fileStream.eof() ) break;
+      fileStream >> tempInt;
+
+      size += 1;
+  }
+  return size;
+}
+
+void textFileToUintArray(int size, string fileName, uint * weightInput) {
+  fstream fileStream;
+  uint tempInt = 0;
+  int i;
+  
+  fileStream.open(fileName);
+
+  for(i = 0; i < size; i++) {
+      if( fileStream.eof() ) break;
+      fileStream >> tempInt;
+      weightInput[i] = tempInt;
+  }
+}
 
 int main(int argc, char *argv[]) {
 
@@ -71,10 +105,16 @@ int main(int argc, char *argv[]) {
 
       cout << "Starting Test " << test << "...";
 
+      // size is for now found out via the findSize function
+      string fileName = "cleanedWeights.txt";
+      int txtSize = findSize(fileName);
+      uint weightInput[txtSize];
+      textFileToUintArray(txtSize, fileName, weightInput);
+
       // Initialize the input and output memory.
-      for (unsigned i=0; i < size; i++) {
-	input[i] = (dma_data_t) rand();
-	output[i] = 0;
+      for (unsigned i=0; i < txtSize; i++) {
+	      input[i] = (dma_data_t) weightInput[i]; // subject to change
+	      output[i] = 0;
       }
     
       // Inform the FPGA of the starting read and write address of the arrays.
