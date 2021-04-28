@@ -3,7 +3,7 @@ module decode(
   input [31:0] inst, wData, SPin, PC, exeOut, M_exeOut,
   input [4:0] wReg,
   output [31:0] Reg0Out, Reg1Out, imm, BrPC, nBrPC,
-  output reg [31:0] SPout,
+  output [31:0] SPout,
   output Branch, notBranch, MemInSel, memwr, memrd, WbRegSel, SPwe_o, wEn_o,
   output [1:0] WbDataSel, ALU_A_SEL, ALU_B_SEL,
   output logic [4:0] Reg0In, Reg1In
@@ -11,6 +11,7 @@ module decode(
 
 //Instantiate modules//
 //Reg File
+logic [31:0] SPregout;
 logic[1:0] Reg0Sel;
 logic Reg1Sel;
 
@@ -68,10 +69,11 @@ Control con_sig(.opcode(inst[31:27]), .Reg1Sel(Reg1Sel), .wEn(wEn_o),
 //Stack Pointer
 always_ff@(posedge clk, negedge rst_n) begin
 	if(!rst_n) begin
-		SPout <= 32'h00003000; //Start of stack
+		SPregout <= 32'h00003000; //Start of stack
 	end else if (SPwe_in) begin
-		SPout <= SPin;
+		SPregout <= SPin;
 	end
 end
+assign SPout = SPwe_in ? SPin : SPregout;
 
 endmodule

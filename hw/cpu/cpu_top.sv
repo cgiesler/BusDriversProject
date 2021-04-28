@@ -28,6 +28,11 @@ logic M_memwr, M_memrd, M_WbRegSel, M_SPwe, M_wEn, W_wEn;
 logic [1:0] M_WbDataSel;
 logic [4:0] m_op, m_regX, m_regExe, m_regData; //Forwarding stuff
 
+logic [31:0] X_Reg0Out, X_Reg1Out, X_imm, X_SPout, X_PC, X_PC4;
+logic X_MemInSel, X_memwr, X_memrd, X_WbRegSel, X_SPwe, X_wEn;
+logic [1:0] X_WbDataSel, X_ALU_A, X_ALU_B;
+logic [4:0] x_op, x_regX, x_regIn0, x_regIn1; //Forwarding stuff
+
 //DMA FSM
 assign memDataOut = 32'h0;
 assign memAddr = 32'h0;
@@ -55,7 +60,7 @@ fetch fetch_stage(.*);
 
 //F_D Pipeline
 
-assign F_Flush = D_Branch;
+assign F_Flush = Branch;
 always@(posedge clk or negedge rst_n) begin
 	if(!rst_n | F_Flush) begin
 		FD_PC <= 32'h00000000;
@@ -86,8 +91,8 @@ assign SPin = exeOut;
 assign wReg = WbReg;
 assign wData = WbData; */
 
-decode dec_stage(.clk(clk), .rst_n(rst_n), .wEn(W_wEn), .SPwe_in(W_SPwe_in),
-				.inst(FD_inst), .wData(W_wData), .SPin(W_SPin), .PC(FD_PC),
+decode dec_stage(.clk(clk), .rst_n(rst_n), .wEn(W_wEn), .SPwe_in(X_SPwe),
+				.inst(FD_inst), .wData(W_wData), .SPin(exeOut), .PC(FD_PC),
 				.wReg(W_wReg), .Reg0Out(D_Reg0Out), .Reg1Out(D_Reg1Out),
 				.imm(D_imm), .BrPC(BrPC), .nBrPC(D_nBrPC), .SPout(D_SPout),
 				.Branch(Branch), .notBranch(notBranch), .MemInSel(D_MemInSel),
@@ -98,10 +103,6 @@ decode dec_stage(.clk(clk), .rst_n(rst_n), .wEn(W_wEn), .SPwe_in(W_SPwe_in),
 				.exeOut(exeOut), .M_exeOut(M_exeOut));
 
 //D_X Pipeline
-logic [31:0] X_Reg0Out, X_Reg1Out, X_imm, X_SPout, X_PC, X_PC4;
-logic X_MemInSel, X_memwr, X_memrd, X_WbRegSel, X_SPwe, X_wEn;
-logic [1:0] X_WbDataSel, X_ALU_A, X_ALU_B;
-logic [4:0] x_op, x_regX, x_regIn0, x_regIn1; //Forwarding stuff
 always@(posedge clk or negedge rst_n) begin
 	if(!rst_n) begin
 		X_Reg0Out <= 32'h00000000;
@@ -188,7 +189,6 @@ always@(posedge clk or negedge rst_n) begin
 		M_memwr <= 1'b0;
 		M_memrd <= 1'b0;
 		M_WbRegSel <= 1'b0;
-		M_SPwe <= 1'b0;
 		M_wEn <= 1'b0;
 		M_WbDataSel <= 2'b00;
 		m_op <= 5'b01010;
@@ -204,7 +204,6 @@ always@(posedge clk or negedge rst_n) begin
 		M_memwr <= M_memwr;
 		M_memrd <= M_memrd;
 		M_WbRegSel <= M_WbRegSel;
-		M_SPwe <= M_SPwe;
 		M_wEn <= M_wEn;
 		M_WbDataSel <= M_WbDataSel;
 		m_op <= m_op;
@@ -221,7 +220,6 @@ always@(posedge clk or negedge rst_n) begin
 		M_memwr <= X_memwr;
 		M_memrd <= X_memrd;
 		M_WbRegSel <= X_WbRegSel;
-		M_SPwe <= X_SPwe;
 		M_wEn <= X_wEn;
 		M_WbDataSel <= X_WbDataSel;
 		m_op <= x_op;
