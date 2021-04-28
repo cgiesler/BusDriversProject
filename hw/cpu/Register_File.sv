@@ -9,8 +9,8 @@ module Register_File(
 reg [31:0] registers [31:0];
 
 //TODO: Implement bypassing for pipelined CPU
-assign Reg0Out = registers[Reg0];
-assign Reg1Out = registers[Reg1];
+assign Reg0Out = ((Reg0 == wReg) & wEn) ? wData : registers[Reg0];
+assign Reg1Out = ((Reg1 == wReg) & wEn) ? wData : registers[Reg1];
 
 always_ff@(posedge clk or negedge rst_n) begin
 	if(!rst_n) begin

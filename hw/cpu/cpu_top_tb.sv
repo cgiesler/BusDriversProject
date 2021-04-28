@@ -2,7 +2,7 @@
 //cpu top level testbench
 module cpu_top_tb();
 
-logic clk, rst_n, nextTransaction, ack, en;
+logic clk, rst_n, nextTransaction, ack, en, go;
 logic [1:0] Interrupt; //Not used for single
 logic [31:0] memDataOut, memAddr; //Not used until DMA set up
 
@@ -51,9 +51,12 @@ cpu_top DUT(.*);
    initial begin
       $dumpvars;
       cycle_count = 0;
+	  Interrupt = 2'b00;
       rst_n = 0; /* Intial reset state */
+	  go = 0;
       clk = 1;
       #201 rst_n = 1; // delay until slightly after two clock periods
+	  go = 1;
     end
 
     always #50 begin   // delay 1/2 clock period each time thru loop
@@ -147,31 +150,31 @@ end
    assign Inst = DUT.inst;
 
    //assign RegWrite = DUT.decode0.regFile0.write;
-   assign RegWrite = DUT.wEn;
+   assign RegWrite = DUT.W_wEn;
    // Is memory being read, one bit signal (1 means yes, 0 means no)
    
    //assign WriteRegister = DUT.decode0.regFile0.writeregsel;
-   assign WriteRegister = DUT.inst[26:22];
+   assign WriteRegister = DUT.W_wReg;
    // The name of the register being written to. (4 bit signal)
 
    //assign WriteData = DUT.decode0.regFile0.writedata;
-   assign WriteData = DUT.wData;
+   assign WriteData = DUT.W_wData;
    // Data being written to the register. (16 bits)
    
    //assign MemRead =  DUT.memory0.memRead;
-   assign MemRead =  DUT.memrd;
+   assign MemRead =  DUT.M_memrd;
    // Is memory being read, one bit signal (1 means yes, 0 means no)
    
    //assign MemWrite = (DUT.memory0.memReadorWrite & DUT.memory0.memWrite);
-   assign MemWrite = DUT.memwr;
+   assign MemWrite = DUT.M_memwr;
    // Is memory being written to (1 bit signal)
    
    //assign MemAddress = DUT.memory0.aluResult;
-   assign MemAddress = DUT.exeOut;
+   assign MemAddress = DUT.M_addrOut;
    // Address to access memory with (for both reads and writes to memory, 16 bits)
    
    //assign MemData = DUT.memory0.writeData;
-   assign MemData = DUT.RegData1_o;
+   assign MemData = DUT.M_Reg1Out;
    // Data to be written to memory for memory writes (16 bits)
    
 //   assign halt = DUT.memory0.halt; //You won't need this because it's part of the main cpu interface

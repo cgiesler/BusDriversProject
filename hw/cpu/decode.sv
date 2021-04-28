@@ -1,17 +1,16 @@
 module decode(
-  input clk, rst_n, wEn, SPwe_in, 
-  input [31:0] inst, wData, SPin, PC, 
+  input clk, rst_n, wEn, SPwe_in, M_D_r0, M_D_r1, X_D_r1, X_D_r0, inter,
+  input [31:0] inst, wData, SPin, PC, exeOut, M_exeOut,
   input [4:0] wReg,
-  output [31:0] Reg0Out, Reg1Out, imm, BrPC, PC_o,
+  output [31:0] Reg0Out, Reg1Out, imm, BrPC, nBrPC,
   output reg [31:0] SPout,
-  output Branch, MemInSel, memwr, memrd, WbRegSel, SPwe_o, wEn_o,
-  output [1:0] WbDataSel, ALU_A_SEL, ALU_B_SEL
+  output Branch, notBranch, MemInSel, memwr, memrd, WbRegSel, SPwe_o, wEn_o,
+  output [1:0] WbDataSel, ALU_A_SEL, ALU_B_SEL,
+  output logic [4:0] Reg0In, Reg1In
 );
 
 //Instantiate modules//
 //Reg File
-
-logic[4:0] Reg0In, Reg1In;
 logic[1:0] Reg0Sel;
 logic Reg1Sel;
 
@@ -48,8 +47,17 @@ assign imm = imm_out;
 
 //Branch
 logic B, BEQ, JMP, RET;
-Branch_calc br_mod(.Reg0Out(Reg0Out), .Reg1Out(Reg1Out), .PC(PC), .imm(imm_out), 
-		.B(B), .BEQ(BEQ), .JMP(JMP), .RET(RET), .BrPC(BrPC), .Branch(Branch));
+//Forwarding to Branch module
+logic [31:0] B_Reg0, B_Reg1, bPC;
+assign B_Reg0 = X_D_r0 ? exeOut : 
+				M_D_r0 ? M_exeOut : Reg0Out;
+assign B_Reg1 = X_D_r1 ? exeOut : 
+				M_D_r1 ? M_exeOut : Reg1Out;
+assign bPC = inter ? 32'h00000000 : PC;
+				
+Branch_calc br_mod(.Reg0Out(B_Reg0), .Reg1Out(B_Reg1), .PC(bPC), .imm(imm_out), 
+		.B(B), .BEQ(BEQ), .JMP(JMP), .RET(RET), .BrPC(BrPC), .nBrPC(nBrPC),
+		.notBranch(notBranch), .Branch(Branch));
 
 //Control
 Control con_sig(.opcode(inst[31:27]), .Reg1Sel(Reg1Sel), .wEn(wEn_o), 
