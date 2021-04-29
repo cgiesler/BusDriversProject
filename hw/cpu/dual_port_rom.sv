@@ -20,13 +20,13 @@ module dual_port_rom
 
 	initial
 	begin
-		$readmemb("dual_port_rom_init.txt", rom);
+		$readmemh("dual_port_rom_init.mif", rom);
 	end
 
 	always @ (posedge clk)
 	begin
-		q_a <= rom[addr_a];
-		q_b <= rom[addr_b];
+		q_a <= rom[addr_a/4];
+		q_b <= rom[addr_b/4];
 	end
 
 endmodule
