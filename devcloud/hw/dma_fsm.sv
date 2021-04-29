@@ -9,7 +9,7 @@ module dma_fsm
     input logic full,  //dma.full
     input [CL_SIZE_WIDTH-1:0] dma_rd_data, //dma.rd_data
 
-    input wire [CL_ADDR_WIDTH] rd_size,
+    input wire [CL_ADDR_WIDTH:0] rd_size,
     input wire DMAValid,
     input reg [31:0] data_to_host, // input from mem
     input wire wr_ready, // from cpu
@@ -29,7 +29,7 @@ module dma_fsm
     logic [FILL_BITS-1:0] fill_count;
     wire [WORD_SIZE-1:0] line_out [FILL_COUNT-1:0];
     reg [CL_SIZE_WIDTH-1:0] line_buffer;
-    logic [CL_ADDR_WIDTH] size;
+    logic [CL_ADDR_WIDTH:0] size;
     logic wr_done;
 
 
@@ -50,8 +50,8 @@ module dma_fsm
 		end
 	endgenerate
 
-    always@(posedge clk, negedge rst_n) begin
-        host_rd_ready <= 0;
+    always @(posedge clk, negedge rst_n) begin
+        //host_rd_ready <= 0;
         if (!rst_n) begin
             for(integer i = 0; i < 16; ++i)
                 line_buffer[i] <= '0;

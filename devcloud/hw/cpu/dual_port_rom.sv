@@ -23,12 +23,14 @@ module dual_port_rom
 	begin
 		
 		$readmemh("dual_port_rom_init.mif", rom);
+		/*(
 		fd = $fopen("dual_port_rom_init.mif","r");
 		$display("opened:%d\n",fd);
 		while(!$feof(fd)) begin
 			$fgets(line,fd);
 			$display("line:%s",line);
 		end
+		*/
 		/*
 		rom[0] = 32'h 60405000;
 		rom[1] = 32'h 60800001;
@@ -39,8 +41,8 @@ module dual_port_rom
 
 	always @ (posedge clk)
 	begin
-		q_a <= rom[addr_a/4];
-		q_b <= rom[addr_b/4];
+		q_a <= rom[addr_a>>2];
+		q_b <= rom[addr_b>>2];
 	end
 
 endmodule

@@ -73,9 +73,10 @@ module memory_controller
             BufferAddr <= 0;
             BufferData <= 0;
         end
+	else begin
         if (CPUEn)
             CPUValid <= 1;
-        else
+    	else
             CPUValid <= 0;
 
         if(AclEn)
@@ -104,6 +105,7 @@ module memory_controller
         end
         else
             DMAValid <= 0;   
+    end
     end
     
     // accessing sram
