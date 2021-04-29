@@ -50,7 +50,7 @@ bool checkUsage(int argc, char *argv[], unsigned long &size, unsigned long &num_
 // with the given fileName, returns the number of ints there in the file, not the byte size 
 int findSize(string fileName) {
   fstream fileStream;
-  uint tempInt;
+  int tempInt;
 
   fileStream.open(fileName);
   int size = 0;
@@ -64,9 +64,9 @@ int findSize(string fileName) {
   return size;
 }
 
-void textFileToUintArray(int size, string fileName, uint * weightInput) {
+void textFileToUintArray(int size, string fileName, int * weightInput) {
   fstream fileStream;
-  uint tempInt = 0;
+  int tempInt = 0;
   int i;
   
   fileStream.open(fileName);
@@ -106,9 +106,9 @@ int main(int argc, char *argv[]) {
       cout << "Starting Test " << test << "...";
 
       // size is for now found out via the findSize function
-      string fileName = "cleanedWeights.txt";
+      string fileName = "cleaned_weights_signed.txt";
       int txtSize = findSize(fileName);
-      uint weightInput[txtSize];
+      int weightInput[txtSize];
       textFileToUintArray(txtSize, fileName, weightInput);
 
       // Initialize the input and output memory.
