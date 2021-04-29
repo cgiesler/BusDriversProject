@@ -42,8 +42,8 @@ module fetch #(parameter N=32)
 	assign inst = Interrupt[1] ? 32'hA7C00000 : //Offset to be determined
 				Interrupt[0] ? 32'hA7C00000 : mem_out;
 	// Instruction Memory
-	memory2c instr_mem(.data_out(mem_out), .data_in(32'h0), .addr(PC >> 2 /*temp fix*/), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(~rst_n));
-
+	//memory2c instr_mem(.data_out(mem_out), .data_in(32'h0), .addr(PC >> 2 /*temp fix*/), .enable(1'b1), .wr(1'b0), .createdump(1'b0), .clk(clk), .rst(~rst_n));
+	dual_port_rom instr_mem(.addr_a(PC[11:3]), .clk(clk), .q_a(mem_out), .q_b(), .addr_b());
 	// Sign Extension of Branch Offset (used in multistage)
 	//assign BranchOffset = {15{{Instruction[16]}}, Instruction[16:0]};
 

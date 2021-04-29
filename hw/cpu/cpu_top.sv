@@ -1,8 +1,9 @@
 module cpu_top(
-	input clk, rst_n, nextTransaction, go/*read-done*/,
+	input clk, rst_n, nextTransaction, go/*read-done*/, CPUValid,
 	input [1:0] Interrupt,
-	output ack, en, halt /*done signal*/,
-	output [31:0] memDataOut, memAddr, PC //DMA FSM stuff (tbt)
+	input [31:0] CPUOut,
+	output ack, halt/*done signal*/, CPUEn, CPUWrEn, 
+	output [31:0] CPUData, CPUAddr, PC //DMA FSM stuff (tbt)
 );
 
 logic [31:0] Reg0Out, Reg1Out, imm, BrPC, SPout, SPin, exeOut, addrOut, wData, PC_o;
@@ -14,7 +15,7 @@ logic [31:0] WbData;
 logic [31:0] PCInc4, W_wData;
 logic [4:0] Rx, LR, WbReg, W_wReg;
 logic valid, F_en, go_r, F_Flush, D_Branch, M_MemInSel, MW_stall;
-logic Branch, MemInSel, memwr, memrd, WbRegSel, SPwe_o, wEn, wEn_o, SPwe_in, CPUValid;
+logic Branch, MemInSel, memwr, memrd, WbRegSel, SPwe_o, wEn, wEn_o, SPwe_in;
 logic [4:0] wReg;
 logic [1:0] WbDataSel, ALU_A_SEL, ALU_B_SEL, inter_o, FD_inter, D_ALU_A, D_ALU_B, D_WbDataSel;
 
@@ -34,9 +35,6 @@ logic [1:0] X_WbDataSel, X_ALU_A, X_ALU_B;
 logic [4:0] x_op, x_regX, x_regIn0, x_regIn1; //Forwarding stuff
 
 //DMA FSM
-assign memDataOut = 32'h0;
-assign memAddr = 32'h0;
-assign en = 1'b0;
 assign LastPC = D_nBrPC;
 
 //Forwarding Unit (pipelined)
@@ -62,7 +60,7 @@ fetch fetch_stage(.*);
 
 assign F_Flush = Branch;
 always@(posedge clk or negedge rst_n) begin
-	if(!rst_n | F_Flush) begin
+	if(!rst_n) begin
 		FD_PC <= 32'h00000000;
 		FD_inst <= 32'h50000000; //NOP opcode
 		FD_inter <= 2'b00;
@@ -71,6 +69,10 @@ always@(posedge clk or negedge rst_n) begin
 		FD_PC <= FD_PC;
 		FD_inst <= FD_inst;
 		FD_inter <= FD_inter;
+	end else if(F_Flush) begin
+		FD_PC <= 32'h00000000;
+		FD_inst <= 32'h50000000; //NOP opcode
+		FD_inter <= 2'b00;
 	end else begin
 		//take vals from F stage
 		FD_PC <= PC;
@@ -229,20 +231,32 @@ always@(posedge clk or negedge rst_n) begin
 	end
 end
 
-//Mem
-//logic valid;
+//Mem stage
+logic CPUEn_1c;
+always@(posedge clk or negedge rst_n) begin
+	if(!rst_n) begin
+		CPUEn_1c <= 1;
+	end else if (CPUValid) begin
+		CPUEn_1c <= 1;
+	end else if (M_memrd) begin
+		CPUEn_1c <= 0;
+	end 
+end
+
 assign Addr = addrOut;
 assign MemDataIn = RegData1_o;
-memory mem_stage(.clk(clk), .rst_n(rst_n), .halt(&m_op), .memrd(M_memrd), 
-				.memwr(M_memwr), .Addr(M_addrOut), .MemDataIn(M_Reg1Out), .MemOut(MemOut),
-				.valid(valid), .CPUValid(CPUValid));
+assign CPUEn = M_memrd & CPUEn_1c;
+assign CPUWrEn = M_memwr;
+assign CPUAddr = M_addrOut;
+assign CPUData = M_Reg1Out;
+assign MemOut = CPUOut;
 
 //M_W Pipeline
 logic [31:0] W_exeOut, W_memOut, W_PC4;
 logic [1:0] W_WbDataSel;
 logic W_WbRegSel;
 logic [4:0] w_op, w_regOut;
-assign MW_stall = !valid & M_memrd;
+assign MW_stall = !CPUValid & M_memrd;
 always@(posedge clk or negedge rst_n) begin
 	if(!rst_n) begin
 		W_exeOut <= 32'h00000000;
