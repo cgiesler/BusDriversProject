@@ -2,7 +2,7 @@
 // Dual Port ROM
 
 module dual_port_rom
-#(parameter DATA_WIDTH=32, parameter ADDR_WIDTH=8)
+#(parameter DATA_WIDTH=32, parameter ADDR_WIDTH=9)
 (
 	input [(ADDR_WIDTH-1):0] addr_a, addr_b,
 	input clk, 
@@ -17,10 +17,24 @@ module dual_port_rom
 	// this design will not compile.
 	// See Verilog LRM 1364-2001 Section 17.2.8 for details on the
 	// format of this file.
-
+	int fd;
+	string line;
 	initial
 	begin
+		
 		$readmemh("dual_port_rom_init.mif", rom);
+		fd = $fopen("dual_port_rom_init.mif","r");
+		$display("opened:%d\n",fd);
+		while(!$feof(fd)) begin
+			$fgets(line,fd);
+			$display("line:%s",line);
+		end
+		/*
+		rom[0] = 32'h 60405000;
+		rom[1] = 32'h 60800001;
+		rom[2] = 32'h 70820000;
+		rom[3] = 32'h f8000000;
+		*/
 	end
 
 	always @ (posedge clk)

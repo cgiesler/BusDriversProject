@@ -9,11 +9,14 @@ module decode(
   output logic [4:0] Reg0In, Reg1In
 );
 
+
+
 //Instantiate modules//
 //Reg File
 logic [31:0] SPregout;
 logic[1:0] Reg0Sel;
 logic Reg1Sel;
+
 
 //Determine RegFile inputs
 always_comb begin

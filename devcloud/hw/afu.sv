@@ -29,7 +29,12 @@ module afu (
 
   // cpu  
   wire halt;
-
+  wire rst_n;
+  logic cpu_go;
+  logic nextTransaction;
+  logic [1:0] Interrupt;
+  logic ack;
+  logic [31:0] PC;
   // memory
   wire DMAValid;
   wire [31:0] DMAOut;
@@ -51,6 +56,8 @@ module afu (
   wire wr_init;
   assign wr_init = rd_done;
 
+  assign rst_n = ~rst;
+  assign cpu_go = rd_done;
   // Instantiate the memory map, which provides the starting read/write
   // 64-bit virtual byte addresses, a transfer size (in cache lines), and a
   // go signal. It also sends a done signal back to software.
@@ -67,9 +74,9 @@ module afu (
 
   //memory_controller (.*);
   memory_controller #(.DATA_WIDTH(32),.ADDR_WIDTH(28))
-  mem(.clk(clk),.rst_n(!rst),.AclEn(0),
+  mem(.clk(clk),.rst_n(!rst),.AclEn(0),.AclWrEn(0),.AclAddr(0),.AclData(0),.AclOut(),.AclValid(),
   .DMAEn(DMAEn),.DMAWrEn(DMAWrEn),.DMAAddr(DMAAddr),.DMAData(DMAData),.DMAOut(DMAOut),.DMAValid(DMAValid),
-  .CPUEn(0),.CPUWrEn(CPUWrEn),.CPUAddr(CPUAddr),.CPUData(CPUData),.CPUOut(CPUOut),.CPUValid(CPUValid));
+  .CPUEn(1),.CPUWrEn(CPUWrEn),.CPUAddr(CPUAddr),.CPUData(CPUData),.CPUOut(CPUOut),.CPUValid(CPUValid));
 
   dma_fsm #(.CL_ADDR_WIDTH(CL_ADDR_WIDTH),.CL_SIZE_WIDTH(512), .WORD_SIZE(32))
   dma_fsm(
@@ -96,8 +103,8 @@ module afu (
     .clk(clk),
     .rst_n(!rst),
     .nextTransaction(0),
-    .go(rd_done),
-    .CPUValid(CPUValid),
+    .cpu_go(rd_done),
+    .CPUValid(1),
     .Interrupt(0),
     .CPUOut(CPUOut),
     .ack(ack),

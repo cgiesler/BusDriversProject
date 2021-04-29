@@ -1,8 +1,9 @@
 module cpu_top(
-	input clk, rst_n, nextTransaction, go/*read-done*/, CPUValid,
+	input clk, rst_n, nextTransaction, cpu_go/*read-done*/, CPUValid,
 	input [1:0] Interrupt,
 	input [31:0] CPUOut,
 	output ack, halt/*done signal*/, CPUEn, CPUWrEn, 
+	//output [15:0] CPUAddr,
 	output [31:0] CPUData, CPUAddr, PC //DMA FSM stuff (tbt)
 );
 
@@ -43,11 +44,25 @@ Forwarding_Unit fu(.*);
 //Interrupt handler in Fetch
 assign ack = |FD_inter;
 
+
+always@(posedge clk) begin
+	if(cpu_go == 1) begin
+	$display("inst: %h. ",inst);
+	$display("cpu_go: %d. ",cpu_go);
+	$display("CPUAddr: %h. ",CPUAddr);
+	$display("CPUEn: %h. ",CPUEn);
+	$display("CPUWrEn: %h. ",CPUWrEn);
+	$display("CPUOut: %h. ",CPUOut);
+	$display("halt: %h.\n", halt);
+end
+end
+
+
 //Fetch
 always@(posedge clk or negedge rst_n) begin
 	if(!rst_n) begin
 		go_r <= 1'b0;
-	end else if (go) begin
+	end else if (cpu_go) begin
 		go_r <= 1'b1;
 	end else if (&inst[31:27]) begin
 		go_r <= 1'b0;

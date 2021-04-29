@@ -14,8 +14,6 @@ csr_mgr.sv
 hal.sv
 ccip_std_afu.sv
 dma_fsm.sv
-dual_port_rom_init.mif
-./cpu/dual_port_rom_init.mif
 ./cpu/alu.sv
 ./cpu/Branch_calc.sv
 ./cpu/Control.sv
