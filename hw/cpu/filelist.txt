@@ -1,0 +1,16 @@
+alu.sv
+Branch_calc.sv
+Control.sv
+cpu_mem.sv
+cpu_top.sv
+decode.sv
+DMA_FSM.sv
+dual_port_rom.sv
+dual_port_rom_init.mif
+execute.sv
+fetch.sv
+Forwarding_Unit.sv
+imm_extender.sv
+memory2c.sv
+Register_File.sv
+write_back.sv
