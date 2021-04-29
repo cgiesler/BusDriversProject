@@ -4,10 +4,11 @@ parameter BITS = 8,
 parameter DIM = 32
 )
 (
-input clk,rst_n,WrEn,en,
+input clk,rst_n,en,
+// input WrEn,
 input signed [BITS-1:0] A [DIM-1:0],
 input signed [BITS-1:0] B [DIM-1:0],
-input [$clog2(DIM):0] row,
+// input [$clog2(DIM):0] row,
 output signed [BITS*2-1:0] Cout [DIM-1:0][DIM-1:0]
 );
 

@@ -17,7 +17,7 @@ module accelerator
     output logic [31:0] MemWrData,
     output logic MemEn, MemWrEn
 );
-typedef enum bit[2:0] {IDLE, RDADDR, RDDATAA, RDDATAB, CALC, WRDATA} accelSTATE;
+typedef enum bit[2:0] {IDLE, RDADDR, RDDATAA, RDDATAB, CALC, WRDATA, WRMAXP} accelSTATE;
 accelSTATE state, next_state;
 
 logic [5:0] count;
@@ -28,7 +28,8 @@ logic [$clog2(DIM):0] m, n, p, MACm, MACn, MACp;
 logic MACen;
 logic [31:0] MACDataAAddr, MACDataBAddr, MACDataOutAddr;
 logic [BITS-1:0] MACDataA [DIM-1:0][DIM*2-2:0], MACDataB [DIM*2-2:0][DIM-1:0];
-logic [BITS*2-1:0] MACDataOut [DIM-1:0][DIM-1:0];
+logic [BITS-1:0] MACDataOut [DIM-1:0][DIM-1:0];
+// logic [BITS*2-1:0] MACDataOut [DIM-1:0][DIM-1:0];
 logic MACdone;
 MATMUL #(BITS, DIM) MACDUT0 // expand to more if needed
 (
@@ -40,6 +41,8 @@ MATMUL #(BITS, DIM) MACDUT0 // expand to more if needed
 assign MACm = m;
 assign MACn = n;
 assign MACp = p;
+assign MACDataA = cacheA;
+assign MACDataB = cacheB;
 
 logic [BITS-1:0] MAXPDataIn [DIM-1:0][DIM-1:0], MAXPDataOut [DIM/2-1:0][DIM/2-1:0];
 maxpool #(BITS, DIM) MAXPDUT0
@@ -47,6 +50,7 @@ maxpool #(BITS, DIM) MAXPDUT0
     .clk(clk), .rst_n(rst_n),
     .dataIn(MAXPDataIn), .dataOut(MAXPDataOut)
 );
+assign MAXPDataIn = MACDataOut;
 
 logic COL2MTXen, COL2MTXfull, COL2MTXrst;
 logic [$clog2(DIM):0] COL2MTXm, COL2MTXn;
@@ -59,6 +63,15 @@ col2mtx #(BITS, DIM) COL2MTXDUT0
     .IN(COL2MTXIN),
     .OUT(COL2MTXOUT),
     .full(COL2MTXfull)
+);
+
+logic [BITS-1:0] FLATIN [DIM-1:0][DIM-1:0];
+logic [BITS-1:0] FLATOUT [DIM*DIM-1:0];
+logic [$clog2(DIM):0] FLATm, FLATn;
+flatten #(BITS, DIM) flattenDUT0
+(
+    .m(FLATm), .n(FLATn),
+    .IN(FLATIN), .OUT(FLATOUT)
 );
 
 always @(posedge clk, negedge rst_n) begin
@@ -81,10 +94,13 @@ always_comb begin : MMIOTranslation
     next_state = IDLE;
     if (MMIOAddr == `MATMULF && MMIOEn && MMIOWrEn) begin // MATMUL Flag Reg write
         next_state = RDADDR;
-    end else if (MMIOAddr == 32'h00000B00 && MMIOEn && MMIOWrEn) begin
+    // end else if (MMIOAddr == 32'h00000B00 && MMIOEn && MMIOWrEn) begin
         
     end else if (MMIOAddr == `MAXPOLF && MMIOEn && MMIOWrEn) begin
-        
+        next_state = WRMAXP;
+        FLATIN = MAXPDataOut;
+        FLATm = m/2;
+        FLATn = p/2;
     end
 
     MemAddr = 0;
@@ -170,28 +186,44 @@ always_comb begin : MMIOTranslation
             end
         end
         CALC: begin
-            for (int i = 0 ; i < DIM ; i++) begin
-                for (int j = 0 ; j < DIM*2-1 ; j++) begin
-                    if (j > DIM*2-1-DIM-i && j < DIM*2-1-i) begin
-                        MACDataA[i][j] = cacheA[i][j-DIM*2-1-DIM-i];
-                    end else MACDataA[i][j] = 0;
-                end
-            end
-            for (int i = 0 ; i < DIM*2-1 ; i++) begin
-                for (int j = 0 ; j < DIM ; j++) begin
-                    if (i > DIM*2-1-DIM-j && i < DIM*2-1-j) begin
-                        MACDataB[i][j] = cacheB[i][j-DIM*2-1-DIM-i];
-                    end else MACDataB[i][j] = 0;
-                end
-            end
             MACen = 1;
             if (MACdone) begin
                 MACen = 0;
                 next_state = WRDATA;
+                cntrst = 0;
+                FLATIN = MACDataOut;
+                FLATm = m;
+                FLATn = p;
+            end
+        end
+        WRDATA: begin
+            MemAddr = MACDataOutAddr + count * 4;
+            MemWrData = {FLATOUT[count*4],FLATOUT[count*4+1],FLATOUT[count*4+2],FLATOUT[count*4+3]};
+            MemEn = 1;
+            MemWrEn = 1;
+            if (count >= m*p) begin
+                MemAddr = `MATMULF;
+                MemWrData = 1;
+                MemEn = 1;
+                MemWrEn = 1;
+                next_state = IDLE;
+            end
+        end
+        WRMAXP: begin
+            MemAddr = MACDataOutAddr + count * 4;
+            MemWrData = {FLATOUT[count*4],FLATOUT[count*4+1],FLATOUT[count*4+2],FLATOUT[count*4+3]};
+            MemEn = 1;
+            MemWrEn = 1;
+            if (count >= m*p) begin
+                MemAddr = `MAXPOLF;
+                MemWrData = 1;
+                MemEn = 1;
+                MemWrEn = 1;
+                next_state = IDLE;
             end
         end
         default: begin
-            
+            next_state = IDLE;
         end
         
     endcase
