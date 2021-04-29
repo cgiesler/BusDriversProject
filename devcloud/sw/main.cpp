@@ -147,10 +147,14 @@ int main(int argc, char *argv[]) {
       // when not using volatile data (i.e. AFU::mallocNonvolatile()). 
       unsigned errors = 0;
 
-      for (unsigned i=0; i < size; i++) {
+      cout << "\ninput: " << input[0];
+      cout << ". output: " << output[0];
+      cout << ". expected: 1.\n";
+
+      for (unsigned i=1; i < size; i++) {
 	
-          cout << "input: " << input[i];
-          cout << "output: " << output[i]<<"\n";
+          cout << "input: ." << input[i];
+          cout << "output: ." << output[i]<<"\n";
 	if (output[i] != input[i]) {
 	  errors++;
 	}
