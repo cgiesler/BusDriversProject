@@ -105,8 +105,10 @@ decode dec_stage(.clk(clk), .rst_n(rst_n), .wEn(W_wEn), .SPwe_in(X_SPwe),
 				.exeOut(exeOut), .M_exeOut(M_exeOut));
 
 //D_X Pipeline
+logic XD_Flush;
+assign XD_Flush = X_D_r0 | X_D_r1;
 always@(posedge clk or negedge rst_n) begin
-	if(!rst_n) begin
+	if((!rst_n) | XD_Flush) begin
 		X_Reg0Out <= 32'h00000000;
 		X_Reg1Out <= 32'h00000000;
 		X_imm <= 32'h00000000;

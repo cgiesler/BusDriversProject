@@ -50,10 +50,8 @@ assign imm = imm_out;
 logic B, BEQ, JMP, RET;
 //Forwarding to Branch module
 logic [31:0] B_Reg0, B_Reg1, bPC;
-assign B_Reg0 = X_D_r0 ? exeOut : 
-				M_D_r0 ? M_exeOut : Reg0Out;
-assign B_Reg1 = X_D_r1 ? exeOut : 
-				M_D_r1 ? M_exeOut : Reg1Out;
+assign B_Reg0 = M_D_r0 ? M_exeOut : Reg0Out;
+assign B_Reg1 = M_D_r1 ? M_exeOut : Reg1Out;
 assign bPC = inter ? 32'h00000000 : PC;
 				
 Branch_calc br_mod(.Reg0Out(B_Reg0), .Reg1Out(B_Reg1), .PC(bPC), .imm(imm_out), 

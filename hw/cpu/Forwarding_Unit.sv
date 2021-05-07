@@ -2,8 +2,8 @@ module Forwarding_Unit(
   input [4:0] d_op, d_regIn0, d_regIn1,
   		x_op, x_regX, x_regIn0, x_regIn1,
 		m_op, m_regX, m_regExe, m_regData,
-		w_op, w_regOut,
-  input valid,
+		w_op, w_regOut, 
+  input valid, MW_stall,
   output X_D_r0, X_D_r1, M_D_r0, M_D_r1, FD_stall,
 	  X_X_r0, X_X_r1, DX_stall, XM_stall,
 	  M_X_r0, M_X_r1, M_M_r, SP_forw,
@@ -36,7 +36,7 @@ always_comb begin
 		end
 	end
 end
-assign XM_stall = XM_stallt;
+assign XM_stall = XM_stallt | MW_stall;
 
 //DX stall (Mem read to D)
 always_comb begin
@@ -47,7 +47,7 @@ always_comb begin
 		end
 	end
 end
-assign DX_stall = DX_stallt | XM_stall;
+assign DX_stall = DX_stallt | XM_stall | X_D_r0t | X_D_r1t;
 
 //FD stall
 always_comb begin
