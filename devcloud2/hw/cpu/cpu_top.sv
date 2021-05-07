@@ -1,5 +1,5 @@
 module cpu_top(
-	input clk, rst_n, nextTransaction, go/*read-done*/, CPUValid,
+	input clk, rst_n, nextTransaction, cpu_go/*read-done*/, CPUValid,
 	input [1:0] Interrupt,
 	input [31:0] CPUOut,
 	output ack, halt/*done signal*/, CPUEn, CPUWrEn, 
@@ -47,7 +47,7 @@ assign ack = |FD_inter;
 always@(posedge clk or negedge rst_n) begin
 	if(!rst_n) begin
 		go_r <= 1'b0;
-	end else if (go) begin
+	end else if (cpu_go) begin
 		go_r <= 1'b1;
 	end else if (&inst[31:27]) begin
 		go_r <= 1'b0;

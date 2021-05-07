@@ -73,7 +73,7 @@ module afu (
   //accelerator acl(.*);
 
   //memory_controller (.*);
-  memory_controller #(.DATA_WIDTH(32),.ADDR_WIDTH(28))
+  memory_controller #(.DATA_WIDTH(32),.ADDR_WIDTH(18))
   mem(.clk(clk),.rst_n(!rst),.AclEn(0),.AclWrEn(0),.AclAddr(0),.AclData(0),.AclOut(),.AclValid(),
   .DMAEn(DMAEn),.DMAWrEn(DMAWrEn),.DMAAddr(DMAAddr),.DMAData(DMAData),.DMAOut(DMAOut),.DMAValid(DMAValid),
   .CPUEn(1),.CPUWrEn(CPUWrEn),.CPUAddr(CPUAddr),.CPUData(CPUData),.CPUOut(CPUOut),.CPUValid(CPUValid));

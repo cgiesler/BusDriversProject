@@ -51,8 +51,8 @@
     assign ram_wr_b = (|(addr_b[ADDR_WIDTH-1:12])) & we_b;
     assign q_a = ram_en_a?out_a:reg_a;
     assign q_b = ram_en_b?out_b:reg_b;
-
-    always@(negedge rst_n) begin
+/*
+    always@(posedge clk,negedge rst_n) begin
         // mmio register reset
         if (!rst_n) begin
             MATMUL_A_In <= 0;
@@ -74,9 +74,29 @@
             Bias_Addr <= 0;
         end
     end
+*/
+    always@(posedge clk,negedge rst_n) begin     
+          // mmio register reset
+        if (!rst_n) begin
+            MATMUL_A_In <= 0;
+            MATMUL_B_In <= 0;
+            MATMUL_C_Out <= 0;
+            MATVEC_A_In <= 0;
+            MATVEC_B_In <= 0;
+            MATVEC_C_Out <= 0;
 
-    always@(posedge clk) begin     
-        ram_en_a <= 1;
+            Dim_M <= 0;  // rows of A, rows of C
+            Dim_N <= 0;  // cols of A, rows of B
+            Dim_P <= 0;  // cols of B, cols of C
+
+            MP_Addr <= 0;
+
+            MATMUL_Flag <= 0;
+            MATVEC_Flag <= 0;
+            MP_Flag <= 0;
+            Bias_Addr <= 0;
+        end
+	ram_en_a <= 1;
         ram_en_b <= 1;
 
         case (addr_a)

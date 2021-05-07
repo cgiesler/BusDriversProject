@@ -25,8 +25,8 @@ module dual_port_rom
 
 	always @ (posedge clk)
 	begin
-		q_a <= rom[addr_a/4];
-		q_b <= rom[addr_b/4];
+		q_a <= rom[addr_a>>2];
+		q_b <= rom[addr_b>>2];
 	end
 
 endmodule

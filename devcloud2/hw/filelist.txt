@@ -20,7 +20,6 @@ dma_fsm.sv
 ./cpu/cpu_mem.sv
 ./cpu/cpu_top.sv
 ./cpu/decode.sv
-./cpu/DMA_FSM.sv
 ./cpu/dual_port_rom.sv
 ./cpu/execute.sv
 ./cpu/fetch.sv
