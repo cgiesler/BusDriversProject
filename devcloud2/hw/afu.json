@@ -3,7 +3,7 @@
    "afu-image": {
       "power": 0,
       "clock-frequency-high": "auto-200.0",
-	   "clock-frequency-low": "auto-150.0",
+      "clock-frequency-low": "auto-50.0",
       "afu-top-interface":
          {
             "name": "ccip_std_afu"
