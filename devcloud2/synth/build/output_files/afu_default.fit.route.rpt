@@ -1,5 +1,5 @@
 Fitter Route Stage Report for afu_default
-Fri May  7 18:44:19 2021
+Fri May  7 22:22:33 2021
 Quartus Prime Version 19.2.0 Build 57 06/24/2019 Patches 0.01rc SJ Pro Edition
 
 
@@ -460,7 +460,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Fitter
     Info: Version 19.2.0 Build 57 06/24/2019 Patches 0.01rc SJ Pro Edition
-    Info: Processing started: Fri May  7 18:29:51 2021
+    Info: Processing started: Fri May  7 22:07:57 2021
 Info: Command: quartus_fit --read_settings_files=on --write_settings_files=off dcp -c afu_default
 Info: qfit2_default_script.tcl version: #1
 Info: Project  = dcp
@@ -483,7 +483,7 @@ Critical Warning: get_entity_instances : Could not find any instances of entity 
 Info: Applying MPF multicycle constraints...
 Info: Target user clock high: auto (600)
 Info: Target user clock low: auto (300.0)
-Info (11888): Total time spent on timing analysis during Routing is 14.27 seconds.
+Info (11888): Total time spent on timing analysis during Routing is 14.19 seconds.
 Info (16607): Fitter routing operations ending: elapsed time is 00:05:09
 
 

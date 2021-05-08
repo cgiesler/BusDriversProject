@@ -1,5 +1,5 @@
 Flow report for afu_default
-Fri May  7 18:50:17 2021
+Fri May  7 22:28:32 2021
 Quartus Prime Version 19.2.0 Build 57 06/24/2019 Patches 0.01rc SJ Pro Edition
 
 
@@ -54,7 +54,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------------+
 ; Flow Summary                                                                           ;
 +-----------------------------+----------------------------------------------------------+
-; Flow Status                 ; Successful - Fri May  7 18:50:17 2021                    ;
+; Flow Status                 ; Successful - Fri May  7 22:28:32 2021                    ;
 ; Quartus Prime Version       ; 19.2.0 Build 57 06/24/2019 Patches 0.01rc SJ Pro Edition ;
 ; Revision Name               ; afu_default                                              ;
 ; Top-level Entity Name       ; dcp_top                                                  ;
@@ -104,10 +104,10 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 05/07/2021 18:28:47 ;
+; Start date & time ; 05/07/2021 22:06:51 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; afu_default         ;
-; Start date & time ; 05/07/2021 18:29:07 ;
+; Start date & time ; 05/07/2021 22:07:11 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; afu_default         ;
 +-------------------+---------------------+
@@ -122,7 +122,7 @@ https://fpgasoftware.intel.com/eula.
 ; ALLOW_ANY_RAM_SIZE_FOR_RECOGNITION           ; On                                                                               ; Off           ; --          ; --         ;
 ; ALLOW_DSP_RETIMING                           ; On                                                                               ; Off           ; --          ; --         ;
 ; ALLOW_RAM_RETIMING                           ; On                                                                               ; Off           ; --          ; --         ;
-; COMPILER_SIGNATURE_ID                        ; 250977683565872.162043732743137                                                  ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                        ; 250977684130232.162045041139621                                                  ; --            ; --          ; --         ;
 ; FITTER_EFFORT                                ; Standard Fit                                                                     ; Auto Fit      ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP                       ; 100                                                                              ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP                       ; 0                                                                                ; --            ; --          ; --         ;
@@ -171,7 +171,7 @@ https://fpgasoftware.intel.com/eula.
 ; ALLOW_ANY_RAM_SIZE_FOR_RECOGNITION           ; On                                                                               ; Off           ; --          ; --         ;
 ; ALLOW_DSP_RETIMING                           ; On                                                                               ; Off           ; --          ; --         ;
 ; ALLOW_RAM_RETIMING                           ; On                                                                               ; Off           ; --          ; --         ;
-; COMPILER_SIGNATURE_ID                        ; 250977683565872.162043732743137                                                  ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                        ; 250977684130232.162045041139621                                                  ; --            ; --          ; --         ;
 ; FITTER_EFFORT                                ; Standard Fit                                                                     ; Auto Fit      ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP                       ; 100                                                                              ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP                       ; 0                                                                                ; --            ; --          ; --         ;
@@ -224,11 +224,11 @@ https://fpgasoftware.intel.com/eula.
 +-----------------+--------------+-------------------------+---------------------+
 ; Module Name     ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ;
 +-----------------+--------------+-------------------------+---------------------+
-; Synthesis       ; 00:01:00     ; 1.0                     ; 3090 MB             ;
-; Fitter          ; 00:17:17     ; 1.4                     ; 10774 MB            ;
-; Timing Analyzer ; 00:00:40     ; 2.3                     ; 6961 MB             ;
-; Assembler       ; 00:02:18     ; 1.0                     ; 10834 MB            ;
-; Total           ; 00:21:15     ; --                      ; --                  ;
+; Synthesis       ; 00:01:02     ; 1.0                     ; 3123 MB             ;
+; Fitter          ; 00:17:26     ; 1.4                     ; 10488 MB            ;
+; Timing Analyzer ; 00:00:42     ; 2.2                     ; 6817 MB             ;
+; Assembler       ; 00:02:17     ; 1.0                     ; 10844 MB            ;
+; Total           ; 00:21:27     ; --                      ; --                  ;
 +-----------------+--------------+-------------------------+---------------------+
 
 
@@ -237,10 +237,10 @@ https://fpgasoftware.intel.com/eula.
 +-----------------+------------------+----------------+------------+----------------+
 ; Module Name     ; Machine Hostname ; OS Name        ; OS Version ; Processor type ;
 +-----------------+------------------+----------------+------------+----------------+
-; Synthesis       ; s005-n003        ; Ubuntu 18.04.4 ; 18         ; x86_64         ;
-; Fitter          ; s005-n003        ; Ubuntu 18.04.4 ; 18         ; x86_64         ;
-; Timing Analyzer ; s005-n003        ; Ubuntu 18.04.4 ; 18         ; x86_64         ;
-; Assembler       ; s005-n003        ; Ubuntu 18.04.4 ; 18         ; x86_64         ;
+; Synthesis       ; s005-n002        ; Ubuntu 18.04.4 ; 18         ; x86_64         ;
+; Fitter          ; s005-n002        ; Ubuntu 18.04.4 ; 18         ; x86_64         ;
+; Timing Analyzer ; s005-n002        ; Ubuntu 18.04.4 ; 18         ; x86_64         ;
+; Assembler       ; s005-n002        ; Ubuntu 18.04.4 ; 18         ; x86_64         ;
 +-----------------+------------------+----------------+------------+----------------+
 
 

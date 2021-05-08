@@ -29,13 +29,13 @@ Delay Model:
 ; -1.032 ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|cpu|FD_inst[29]~DUPLICATE ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|cpu|fetch_stage|PC[28]   ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.057     ; 6.017      ;
 ; -1.023 ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|cpu|FD_inst[28]           ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|cpu|fetch_stage|PC[28]   ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.057     ; 6.008      ;
 ; -1.023 ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|cpu|FD_inst[28]           ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|cpu|fetch_stage|PC[28]   ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.057     ; 6.008      ;
-; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[78]  ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
-; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[493] ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
-; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[429] ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
-; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[397] ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
-; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[173] ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
 ; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[141] ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
 ; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[205] ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
+; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[173] ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
+; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[397] ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
+; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[429] ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
+; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[493] ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
+; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[78]  ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
 ; -1.023 ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                   ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[336] ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.281     ; 5.645      ;
 ; -1.022 ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|cpu|FD_inst[31]~DUPLICATE ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|cpu|fetch_stage|PC[28]   ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.057     ; 6.007      ;
 ; -1.022 ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|cpu|FD_inst[31]~DUPLICATE ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|cpu|fetch_stage|PC[28]   ; u0|dcp_iopll|dcp_iopll|clk1x ; u0|dcp_iopll|dcp_iopll|clk1x ; 5.000        ; -0.057     ; 6.007      ;
@@ -677,19 +677,19 @@ HTML report is unavailable in plain text report export.
 
 Path #5: Setup slack is -1.023 (VIOLATED)
 ===============================================================================
-+---------------------------------------------------------------------------------------------------------------------+
-; Path Summary                                                                                                        ;
-+--------------------+------------------------------------------------------------------------------------------------+
-; Property           ; Value                                                                                          ;
-+--------------------+------------------------------------------------------------------------------------------------+
-; From Node          ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                 ;
-; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[78] ;
-; Launch Clock       ; u0|dcp_iopll|dcp_iopll|clk1x                                                                   ;
-; Latch Clock        ; u0|dcp_iopll|dcp_iopll|clk1x                                                                   ;
-; Data Arrival Time  ; 15.397                                                                                         ;
-; Data Required Time ; 14.374                                                                                         ;
-; Slack              ; -1.023 (VIOLATED)                                                                              ;
-+--------------------+------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------+
+; Path Summary                                                                                                         ;
++--------------------+-------------------------------------------------------------------------------------------------+
+; Property           ; Value                                                                                           ;
++--------------------+-------------------------------------------------------------------------------------------------+
+; From Node          ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                  ;
+; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[141] ;
+; Launch Clock       ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
+; Latch Clock        ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
+; Data Arrival Time  ; 15.397                                                                                          ;
+; Data Required Time ; 14.374                                                                                          ;
+; Slack              ; -1.023 (VIOLATED)                                                                               ;
++--------------------+-------------------------------------------------------------------------------------------------+
 
 +---------------------------------------------------------------------------------------+
 ; Statistics                                                                            ;
@@ -773,22 +773,22 @@ Note: Negative delays are omitted from totals when calculating percentages
 ;   15.290 ;   0.090 ; FF ; RE   ; 1      ; R6_X78_Y46_N0_I144                          ; High Speed ; H6                                                                                                                         ;
 ;   15.352 ;   0.062 ; FF ; RE   ; 1      ; LOCAL_INTERCONNECT_X79_Y46_N0_I14           ; High Speed ; LAB_LINE                                                                                                                   ;
 ;   15.396 ;   0.044 ; FF ; RE   ; 8      ; LAB_RE_X79_Y46_N0_I81                       ; High Speed ; lsimb                                                                                                                      ;
-;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N46                              ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[78]|ena                         ;
-;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N46                              ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[78]                             ;
+;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N40                              ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[141]|ena                        ;
+;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N40                              ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[141]                            ;
 +----------+---------+----+------+--------+---------------------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------+
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Data Required Path                                                                                                                                                ;
-+----------+---------+----+------+--------+----------------+-------+------------------------------------------------------------------------------------------------+
-; Total    ; Incr    ; RF ; Type ; Fanout ; Location       ; HS/LP ; Element                                                                                        ;
-+----------+---------+----+------+--------+----------------+-------+------------------------------------------------------------------------------------------------+
-; 5.000    ; 5.000   ;    ;      ;        ;                ;       ; latch edge time                                                                                ;
-; 14.471   ; 9.471   ;    ;      ;        ;                ;       ; clock path                                                                                     ;
-;   13.231 ;   8.231 ; R  ;      ;        ;                ;       ; clock network delay                                                                            ;
-;   14.471 ;   1.240 ;    ;      ;        ;                ;       ; clock pessimism removed                                                                        ;
-; 14.321   ; -0.150  ;    ;      ;        ;                ;       ; clock uncertainty                                                                              ;
-; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N46 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[78] ;
-+----------+---------+----+------+--------+----------------+-------+------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Data Required Path                                                                                                                                                 ;
++----------+---------+----+------+--------+----------------+-------+-------------------------------------------------------------------------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location       ; HS/LP ; Element                                                                                         ;
++----------+---------+----+------+--------+----------------+-------+-------------------------------------------------------------------------------------------------+
+; 5.000    ; 5.000   ;    ;      ;        ;                ;       ; latch edge time                                                                                 ;
+; 14.471   ; 9.471   ;    ;      ;        ;                ;       ; clock path                                                                                      ;
+;   13.231 ;   8.231 ; R  ;      ;        ;                ;       ; clock network delay                                                                             ;
+;   14.471 ;   1.240 ;    ;      ;        ;                ;       ; clock pessimism removed                                                                         ;
+; 14.321   ; -0.150  ;    ;      ;        ;                ;       ; clock uncertainty                                                                               ;
+; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N40 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[141] ;
++----------+---------+----+------+--------+----------------+-------+-------------------------------------------------------------------------------------------------+
 
 ----------------------------
 ; Extra Fitter Information ;
@@ -804,7 +804,7 @@ Path #6: Setup slack is -1.023 (VIOLATED)
 ; Property           ; Value                                                                                           ;
 +--------------------+-------------------------------------------------------------------------------------------------+
 ; From Node          ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                  ;
-; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[493] ;
+; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[205] ;
 ; Launch Clock       ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
 ; Latch Clock        ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
 ; Data Arrival Time  ; 15.397                                                                                          ;
@@ -894,22 +894,22 @@ Note: Negative delays are omitted from totals when calculating percentages
 ;   15.290 ;   0.090 ; FF ; RE   ; 1      ; R6_X78_Y46_N0_I144                          ; High Speed ; H6                                                                                                                         ;
 ;   15.352 ;   0.062 ; FF ; RE   ; 1      ; LOCAL_INTERCONNECT_X79_Y46_N0_I14           ; High Speed ; LAB_LINE                                                                                                                   ;
 ;   15.396 ;   0.044 ; FF ; RE   ; 8      ; LAB_RE_X79_Y46_N0_I81                       ; High Speed ; lsimb                                                                                                                      ;
-;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N44                              ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[493]|ena                        ;
-;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N44                              ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[493]                            ;
+;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N8                               ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[205]|ena                        ;
+;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N8                               ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[205]                            ;
 +----------+---------+----+------+--------+---------------------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------+
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Data Required Path                                                                                                                                                 ;
-+----------+---------+----+------+--------+----------------+-------+-------------------------------------------------------------------------------------------------+
-; Total    ; Incr    ; RF ; Type ; Fanout ; Location       ; HS/LP ; Element                                                                                         ;
-+----------+---------+----+------+--------+----------------+-------+-------------------------------------------------------------------------------------------------+
-; 5.000    ; 5.000   ;    ;      ;        ;                ;       ; latch edge time                                                                                 ;
-; 14.471   ; 9.471   ;    ;      ;        ;                ;       ; clock path                                                                                      ;
-;   13.231 ;   8.231 ; R  ;      ;        ;                ;       ; clock network delay                                                                             ;
-;   14.471 ;   1.240 ;    ;      ;        ;                ;       ; clock pessimism removed                                                                         ;
-; 14.321   ; -0.150  ;    ;      ;        ;                ;       ; clock uncertainty                                                                               ;
-; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N44 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[493] ;
-+----------+---------+----+------+--------+----------------+-------+-------------------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Data Required Path                                                                                                                                                ;
++----------+---------+----+------+--------+---------------+-------+-------------------------------------------------------------------------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location      ; HS/LP ; Element                                                                                         ;
++----------+---------+----+------+--------+---------------+-------+-------------------------------------------------------------------------------------------------+
+; 5.000    ; 5.000   ;    ;      ;        ;               ;       ; latch edge time                                                                                 ;
+; 14.471   ; 9.471   ;    ;      ;        ;               ;       ; clock path                                                                                      ;
+;   13.231 ;   8.231 ; R  ;      ;        ;               ;       ; clock network delay                                                                             ;
+;   14.471 ;   1.240 ;    ;      ;        ;               ;       ; clock pessimism removed                                                                         ;
+; 14.321   ; -0.150  ;    ;      ;        ;               ;       ; clock uncertainty                                                                               ;
+; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N8 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[205] ;
++----------+---------+----+------+--------+---------------+-------+-------------------------------------------------------------------------------------------------+
 
 ----------------------------
 ; Extra Fitter Information ;
@@ -925,7 +925,7 @@ Path #7: Setup slack is -1.023 (VIOLATED)
 ; Property           ; Value                                                                                           ;
 +--------------------+-------------------------------------------------------------------------------------------------+
 ; From Node          ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                  ;
-; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[429] ;
+; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[173] ;
 ; Launch Clock       ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
 ; Latch Clock        ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
 ; Data Arrival Time  ; 15.397                                                                                          ;
@@ -1015,8 +1015,8 @@ Note: Negative delays are omitted from totals when calculating percentages
 ;   15.290 ;   0.090 ; FF ; RE   ; 1      ; R6_X78_Y46_N0_I144                          ; High Speed ; H6                                                                                                                         ;
 ;   15.352 ;   0.062 ; FF ; RE   ; 1      ; LOCAL_INTERCONNECT_X79_Y46_N0_I14           ; High Speed ; LAB_LINE                                                                                                                   ;
 ;   15.396 ;   0.044 ; FF ; RE   ; 8      ; LAB_RE_X79_Y46_N0_I81                       ; High Speed ; lsimb                                                                                                                      ;
-;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N16                              ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[429]|ena                        ;
-;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N16                              ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[429]                            ;
+;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N10                              ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[173]|ena                        ;
+;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N10                              ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[173]                            ;
 +----------+---------+----+------+--------+---------------------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------+
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1029,7 +1029,7 @@ Note: Negative delays are omitted from totals when calculating percentages
 ;   13.231 ;   8.231 ; R  ;      ;        ;                ;       ; clock network delay                                                                             ;
 ;   14.471 ;   1.240 ;    ;      ;        ;                ;       ; clock pessimism removed                                                                         ;
 ; 14.321   ; -0.150  ;    ;      ;        ;                ;       ; clock uncertainty                                                                               ;
-; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N16 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[429] ;
+; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N10 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[173] ;
 +----------+---------+----+------+--------+----------------+-------+-------------------------------------------------------------------------------------------------+
 
 ----------------------------
@@ -1167,7 +1167,7 @@ Path #9: Setup slack is -1.023 (VIOLATED)
 ; Property           ; Value                                                                                           ;
 +--------------------+-------------------------------------------------------------------------------------------------+
 ; From Node          ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                  ;
-; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[173] ;
+; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[429] ;
 ; Launch Clock       ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
 ; Latch Clock        ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
 ; Data Arrival Time  ; 15.397                                                                                          ;
@@ -1257,8 +1257,8 @@ Note: Negative delays are omitted from totals when calculating percentages
 ;   15.290 ;   0.090 ; FF ; RE   ; 1      ; R6_X78_Y46_N0_I144                          ; High Speed ; H6                                                                                                                         ;
 ;   15.352 ;   0.062 ; FF ; RE   ; 1      ; LOCAL_INTERCONNECT_X79_Y46_N0_I14           ; High Speed ; LAB_LINE                                                                                                                   ;
 ;   15.396 ;   0.044 ; FF ; RE   ; 8      ; LAB_RE_X79_Y46_N0_I81                       ; High Speed ; lsimb                                                                                                                      ;
-;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N10                              ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[173]|ena                        ;
-;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N10                              ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[173]                            ;
+;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N16                              ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[429]|ena                        ;
+;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N16                              ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[429]                            ;
 +----------+---------+----+------+--------+---------------------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------+
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1271,7 +1271,7 @@ Note: Negative delays are omitted from totals when calculating percentages
 ;   13.231 ;   8.231 ; R  ;      ;        ;                ;       ; clock network delay                                                                             ;
 ;   14.471 ;   1.240 ;    ;      ;        ;                ;       ; clock pessimism removed                                                                         ;
 ; 14.321   ; -0.150  ;    ;      ;        ;                ;       ; clock uncertainty                                                                               ;
-; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N10 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[173] ;
+; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N16 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[429] ;
 +----------+---------+----+------+--------+----------------+-------+-------------------------------------------------------------------------------------------------+
 
 ----------------------------
@@ -1288,7 +1288,7 @@ Path #10: Setup slack is -1.023 (VIOLATED)
 ; Property           ; Value                                                                                           ;
 +--------------------+-------------------------------------------------------------------------------------------------+
 ; From Node          ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                  ;
-; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[141] ;
+; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[493] ;
 ; Launch Clock       ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
 ; Latch Clock        ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
 ; Data Arrival Time  ; 15.397                                                                                          ;
@@ -1378,8 +1378,8 @@ Note: Negative delays are omitted from totals when calculating percentages
 ;   15.290 ;   0.090 ; FF ; RE   ; 1      ; R6_X78_Y46_N0_I144                          ; High Speed ; H6                                                                                                                         ;
 ;   15.352 ;   0.062 ; FF ; RE   ; 1      ; LOCAL_INTERCONNECT_X79_Y46_N0_I14           ; High Speed ; LAB_LINE                                                                                                                   ;
 ;   15.396 ;   0.044 ; FF ; RE   ; 8      ; LAB_RE_X79_Y46_N0_I81                       ; High Speed ; lsimb                                                                                                                      ;
-;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N40                              ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[141]|ena                        ;
-;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N40                              ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[141]                            ;
+;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N44                              ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[493]|ena                        ;
+;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N44                              ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[493]                            ;
 +----------+---------+----+------+--------+---------------------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------+
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1392,7 +1392,7 @@ Note: Negative delays are omitted from totals when calculating percentages
 ;   13.231 ;   8.231 ; R  ;      ;        ;                ;       ; clock network delay                                                                             ;
 ;   14.471 ;   1.240 ;    ;      ;        ;                ;       ; clock pessimism removed                                                                         ;
 ; 14.321   ; -0.150  ;    ;      ;        ;                ;       ; clock uncertainty                                                                               ;
-; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N40 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[141] ;
+; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N44 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[493] ;
 +----------+---------+----+------+--------+----------------+-------+-------------------------------------------------------------------------------------------------+
 
 ----------------------------
@@ -1403,19 +1403,19 @@ HTML report is unavailable in plain text report export.
 
 Path #11: Setup slack is -1.023 (VIOLATED)
 ===============================================================================
-+----------------------------------------------------------------------------------------------------------------------+
-; Path Summary                                                                                                         ;
-+--------------------+-------------------------------------------------------------------------------------------------+
-; Property           ; Value                                                                                           ;
-+--------------------+-------------------------------------------------------------------------------------------------+
-; From Node          ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                  ;
-; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[205] ;
-; Launch Clock       ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
-; Latch Clock        ; u0|dcp_iopll|dcp_iopll|clk1x                                                                    ;
-; Data Arrival Time  ; 15.397                                                                                          ;
-; Data Required Time ; 14.374                                                                                          ;
-; Slack              ; -1.023 (VIOLATED)                                                                               ;
-+--------------------+-------------------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------+
+; Path Summary                                                                                                        ;
++--------------------+------------------------------------------------------------------------------------------------+
+; Property           ; Value                                                                                          ;
++--------------------+------------------------------------------------------------------------------------------------+
+; From Node          ; fpga_top|inst_blue_ccip_interface_reg|pck_cp2af_softReset_T0_q                                 ;
+; To Node            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[78] ;
+; Launch Clock       ; u0|dcp_iopll|dcp_iopll|clk1x                                                                   ;
+; Latch Clock        ; u0|dcp_iopll|dcp_iopll|clk1x                                                                   ;
+; Data Arrival Time  ; 15.397                                                                                         ;
+; Data Required Time ; 14.374                                                                                         ;
+; Slack              ; -1.023 (VIOLATED)                                                                              ;
++--------------------+------------------------------------------------------------------------------------------------+
 
 +---------------------------------------------------------------------------------------+
 ; Statistics                                                                            ;
@@ -1499,22 +1499,22 @@ Note: Negative delays are omitted from totals when calculating percentages
 ;   15.290 ;   0.090 ; FF ; RE   ; 1      ; R6_X78_Y46_N0_I144                          ; High Speed ; H6                                                                                                                         ;
 ;   15.352 ;   0.062 ; FF ; RE   ; 1      ; LOCAL_INTERCONNECT_X79_Y46_N0_I14           ; High Speed ; LAB_LINE                                                                                                                   ;
 ;   15.396 ;   0.044 ; FF ; RE   ; 8      ; LAB_RE_X79_Y46_N0_I81                       ; High Speed ; lsimb                                                                                                                      ;
-;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N8                               ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[205]|ena                        ;
-;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N8                               ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[205]                            ;
+;   15.397 ;   0.001 ;    ; IC   ; 1      ; FF_X79_Y46_N46                              ;            ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[78]|ena                         ;
+;   15.397 ;   0.000 ; FF ; CELL ; 1      ; FF_X79_Y46_N46                              ; High Speed ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[78]                             ;
 +----------+---------+----+------+--------+---------------------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------+
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Data Required Path                                                                                                                                                ;
-+----------+---------+----+------+--------+---------------+-------+-------------------------------------------------------------------------------------------------+
-; Total    ; Incr    ; RF ; Type ; Fanout ; Location      ; HS/LP ; Element                                                                                         ;
-+----------+---------+----+------+--------+---------------+-------+-------------------------------------------------------------------------------------------------+
-; 5.000    ; 5.000   ;    ;      ;        ;               ;       ; latch edge time                                                                                 ;
-; 14.471   ; 9.471   ;    ;      ;        ;               ;       ; clock path                                                                                      ;
-;   13.231 ;   8.231 ; R  ;      ;        ;               ;       ; clock network delay                                                                             ;
-;   14.471 ;   1.240 ;    ;      ;        ;               ;       ; clock pessimism removed                                                                         ;
-; 14.321   ; -0.150  ;    ;      ;        ;               ;       ; clock uncertainty                                                                               ;
-; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N8 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[205] ;
-+----------+---------+----+------+--------+---------------+-------+-------------------------------------------------------------------------------------------------+
++----------+---------+----+------+--------+----------------+-------+------------------------------------------------------------------------------------------------+
+; Total    ; Incr    ; RF ; Type ; Fanout ; Location       ; HS/LP ; Element                                                                                        ;
++----------+---------+----+------+--------+----------------+-------+------------------------------------------------------------------------------------------------+
+; 5.000    ; 5.000   ;    ;      ;        ;                ;       ; latch edge time                                                                                ;
+; 14.471   ; 9.471   ;    ;      ;        ;                ;       ; clock path                                                                                     ;
+;   13.231 ;   8.231 ; R  ;      ;        ;                ;       ; clock network delay                                                                            ;
+;   14.471 ;   1.240 ;    ;      ;        ;                ;       ; clock pessimism removed                                                                        ;
+; 14.321   ; -0.150  ;    ;      ;        ;                ;       ; clock uncertainty                                                                              ;
+; 14.374   ; 0.053   ;    ; uTsu ; 1      ; FF_X79_Y46_N46 ;       ; fpga_top|inst_green_bs|platform_shim_ccip_std_afu|ccip_std_afu|hal|afu|dma_fsm|line_buffer[78] ;
++----------+---------+----+------+--------+----------------+-------+------------------------------------------------------------------------------------------------+
 
 ----------------------------
 ; Extra Fitter Information ;

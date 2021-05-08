@@ -1,5 +1,5 @@
 Fitter Finalize Stage Report for afu_default
-Fri May  7 18:46:47 2021
+Fri May  7 22:25:02 2021
 Quartus Prime Version 19.2.0 Build 57 06/24/2019 Patches 0.01rc SJ Pro Edition
 
 
@@ -57,7 +57,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Fitter
     Info: Version 19.2.0 Build 57 06/24/2019 Patches 0.01rc SJ Pro Edition
-    Info: Processing started: Fri May  7 18:29:51 2021
+    Info: Processing started: Fri May  7 22:07:57 2021
 Info: Command: quartus_fit --read_settings_files=on --write_settings_files=off dcp -c afu_default
 Info: qfit2_default_script.tcl version: #1
 Info: Project  = dcp
