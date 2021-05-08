@@ -1,0 +1,8 @@
+Type  : 2_slow_900mv_100c setup 'u0|dcp_iopll|dcp_iopll|clk1x'
+Slack : -1.124
+TNS   : -697.259
+
+Type  : 2_slow_900mv_0c setup 'u0|dcp_iopll|dcp_iopll|clk1x'
+Slack : -1.032
+TNS   : -572.791
+
